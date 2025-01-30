@@ -9,28 +9,30 @@
     display: flex;
     align-items: center;
 
-    background: #eee;
-    font-size: 1rem;
-    font-weight: 600;
-    
-    border-radius: 0.75rem;
-    border: 0.1rem solid #3A2011;
-    box-shadow: 0 0.25rem 0 #3A2011;
-    transition: .1s ease-in-out;
+    background: var(--light-color);
 
-    padding: 0.5rem;
+    font-weight: 600;
+    font-size: var(--paragraph-font-size);
+    
+    border-radius: var(--normal-indent);
+    border: var(--border-thickness) solid var(--accent-color);
+
+    box-shadow: 0 var(--tiny-indent) 0 var(--accent-color);
+    padding: var(--small-indent);
+
+    transition: var(--fast-transition);
   }
 
   .button:active {
-    transform: translateY(0.25rem);
+    transform: translateY(var(--tiny-indent));
     box-shadow: none;
   }
 
   .button:first-child {
-    margin-right: 1rem;
+    margin-right: var(--large-indent);
   }
 
   .button > *:first-child {
-    margin-right: 0.35rem;
+    margin-right: var(--small-indent);
   }
 </style>

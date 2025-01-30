@@ -8,12 +8,12 @@
   <div class="menu">
     <div class="menu__btns-wrapper">
       <Button>
-        <span>ТОП</span>
+        <span>TOP</span>
         <TrophyIcon />
       </Button>
 
       <Button>
-        <span>ИГРА</span>
+        <span>PLAY</span>
         <PlayerIcon />
       </Button>
     </div>
@@ -22,9 +22,13 @@
 
 <style scoped>
   .menu {
+    position: absolute;
+    translate: -50% -10%;
+    bottom: 10%;
+    left: 50%;
+
     display: flex;
     justify-content: center;
-    padding: 2rem 0;
   }
 
   .menu__btns-wrapper {

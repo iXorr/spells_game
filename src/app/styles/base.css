@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --slow-transition: .5s ease-in-out;
+  --normal-transition: .25s ease-in-out;
+  --fast-transition: .1s ease-in-out;
+
+  --paragraph-font-size: 1rem;
+  --subheader-font-size: 1.5rem;
+  --header-font-size: 2rem;
+
+  --border-thickness: .1rem;
+
+  --tiny-indent: .25rem;
+  --small-indent: .5rem;
+  --normal-indent: .75rem;
+  --large-indent: 1rem;
+  --huge-indent: 1.25rem;
+
+  --accent-color: #3A2011;
+  --light-color: #eee;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  font-family: Montserrat, Arial, sans-serif;
+}
+
+#app {
+  margin: 0 auto;
+  text-align: center;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  cursor: url('../main_cursor.cur'), auto;
+}
+
+svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
