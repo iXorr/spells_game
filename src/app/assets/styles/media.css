@@ -1,0 +1,45 @@
+/* @media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+
+@media (min-width: 1440px) {
+  html {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 1440px) {
+  html {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 1080px) {
+  html {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 720px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+
+@media (max-width: 425px) {
+  html {
+    font-size: 16px;
+  }
+}
