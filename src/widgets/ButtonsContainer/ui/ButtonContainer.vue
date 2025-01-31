@@ -1,7 +1,6 @@
 <script setup>
-  import Button from '@shared/Button'
-  import TrophyIcon from '@shared/Icons/TrophyIcon'
-  import PlayerIcon from '@shared/Icons/PlayerIcon'
+  import { Button } from '@shared/ui'
+  import { TrophyIcon, PlayerIcon } from '@shared/icons'
 </script>
 
 <template>

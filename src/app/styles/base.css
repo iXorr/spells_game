@@ -27,6 +27,7 @@
   margin: 0;
   padding: 0;
   font-family: Montserrat, Arial, sans-serif;
+  user-select: none;
 }
 
 #app {
@@ -38,11 +39,12 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
-* {
-  cursor: url('../main_cursor.cur'), auto;
-}
-
 svg {
   width: 1.5rem;
   height: 1.5rem;
+}
+
+.screen {
+  width: 100dvw;
+  height: 100dvh;
 }

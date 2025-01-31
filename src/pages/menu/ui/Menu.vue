@@ -1,5 +1,5 @@
 <script setup>
-  import ButtonContainer from '@widgets/ButtonsContainer';
+  import { ButtonContainer } from '@widgets/buttonsContainer';
 </script>
 
 <template>
