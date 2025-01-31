@@ -35,9 +35,9 @@
   text-align: center;
 }
 
-button {
+/* button {
   -webkit-tap-highlight-color: transparent;
-}
+} */
 
 svg {
   width: 1.5rem;

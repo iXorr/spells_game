@@ -1,29 +1,34 @@
 <script setup>
-  import { ref } from 'vue';
-  
-  const pulse = ref(null)
+  import { onMounted, onUpdated, ref, watchEffect } from 'vue';
 
-  function animateClick(event) {
-    pulse.value.style.top = event.clientY + 'px'
-    pulse.value.style.left = event.clientX + 'px'
-    pulse.value.classList.add('pulse--active')
-  }
+  import { coords } from '../model/trackCoords.js'
 </script>
-
+ 
 <template>
-  <div class="pulse" ref="pulse">1235</div>
+  <div>
+    <p>{{ coords.y }}</p>
+    <div class="pulse" :style="{ top: coords.y + 'px', left: coords.x + 'px'}"></div>
+  </div>
 </template>
 
 <style scoped>
+  button {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 10px;
+    transition: var(--fast-transition);
+  }
+
+  button:active {
+    background: lightcoral;
+  }
+
   .pulse {
     position: absolute;
-    top: 5rem;
-    left: 15rem;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    pointer-events: none;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.25);
     transform: translate(-50%, -50%);
     transition: transform 0.1s ease;
 

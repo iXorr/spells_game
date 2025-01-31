@@ -1,9 +1,10 @@
 <script setup>
-  import { PulseClick, getClickCoords } from '@entities/pulseClick'
+  import { onMounted, ref, watchEffect } from 'vue'
+  import { PulseClick, trackCoords } from '@entities/pulseClick'
 </script>
 
 <template>
-  <div class="root screen" @click="(event) => getClickCoords(event)">
+  <div class="root screen" @click="(event) => trackCoords(event)">
     <PulseClick />
   </div>
 </template>
@@ -16,7 +17,8 @@
   }
   
   @media (pointer: fine) {
-    * {
+    .root, 
+    .root * {
       cursor: url('@shared/assets/cursors/wand.cur'), auto;
     }
   }
