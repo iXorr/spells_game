@@ -1,46 +1,67 @@
 <script setup>
-  import { onMounted, onUpdated, ref, watchEffect } from 'vue';
-
+  // import { ref, onUpdated } from 'vue'
   import { coords } from '../model/trackCoords.js'
+
+  // const pulse = ref(null)
+
+  // onUpdated(() => {
+  //   pulse.value.classList.add('pulse--active')
+
+  //   setTimeout(() => {
+  //     pulse.value.classList.remove('pulse--active')
+  //   }, 1000);
+  // })
 </script>
  
 <template>
-  <div>
-    <p>{{ coords.y }}</p>
-    <div class="pulse" :style="{ top: coords.y + 'px', left: coords.x + 'px'}"></div>
+  <div class="pulse-container">
+    <p class="sign">{{ coords.x }} : {{ coords.y }}</p>
+
+    <div
+      class="pulse"
+      :style="{ top: coords.y + 'px', left: coords.x + 'px'}">
+    </div>
   </div>
 </template>
 
 <style scoped>
-  button {
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 5px 10px;
-    transition: var(--fast-transition);
-  }
-
-  button:active {
-    background: lightcoral;
-  }
-
-  .pulse {
+  .sign {
+    top: 5rem;
+    left: 5rem;
+    padding: 15px;
     position: absolute;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.25);
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease;
+    background: thistle;
+    font-size: 28px;
+    border: 1px solid black;
+  }
 
-    /* opacity: 0; */
+  .pulse-container {
+    overflow: hidden;
+    
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    
     pointer-events: none;
   }
 
-  .pulse--active {
-    animation: pulse 1s ease-out 1;
+  .pulse {
+    position: inherit;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.25);
+    /* opacity: 0; */
+
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
   }
 
-  /* @keyframes pulse {
+  .pulse--active {
+    animation: pulsing 1s ease-out 1;
+  }
+
+  @keyframes pulsing {
     0% {
       transform: scale(0);
       opacity: 1;
@@ -53,5 +74,5 @@
       transform: scale(3);
       opacity: 0;
     }
-  } */
+  }
 </style>

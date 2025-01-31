@@ -5,7 +5,7 @@
 
 <template>
   <div class="root screen" @click="(event) => trackCoords(event)">
-    <PulseClick />
+    <PulseClick class="test" />
   </div>
 </template>
 

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="root">
+  <div>
     <Game />
   </div>
 </template>

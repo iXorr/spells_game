@@ -35,16 +35,16 @@
   text-align: center;
 }
 
-/* button {
+.screen {
+  width: 100dvw;
+  height: 100dvh;
+}
+
+button {
   -webkit-tap-highlight-color: transparent;
-} */
+}
 
 svg {
   width: 1.5rem;
   height: 1.5rem;
-}
-
-.screen {
-  width: 100dvw;
-  height: 100dvh;
 }
