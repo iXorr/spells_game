@@ -1,11 +1,14 @@
 <script setup>
   import { onMounted, ref, watchEffect } from 'vue'
-  import { PulseClick, trackCoords } from '@entities/pulseClick'
+  import { PulseClick, trackClick } from '@entities/pulseClick'
+  import { Shape } from '@shared/ui'
 </script>
 
 <template>
-  <div class="root screen" @click="(event) => trackCoords(event)">
-    <PulseClick class="test" />
+  <div class="root screen" @click="(event) => trackClick(event)">
+    <PulseClick />
+
+    <Shape />
   </div>
 </template>
 

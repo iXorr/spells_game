@@ -1,40 +1,17 @@
 <script setup>
-  // import { ref, onUpdated } from 'vue'
-  import { coords } from '../model/trackCoords.js'
-
-  // const pulse = ref(null)
-
-  // onUpdated(() => {
-  //   pulse.value.classList.add('pulse--active')
-
-  //   setTimeout(() => {
-  //     pulse.value.classList.remove('pulse--active')
-  //   }, 1000);
-  // })
+  import { coords, dynPulseClasses } from '../model/trackClick.js'
 </script>
  
 <template>
   <div class="pulse-container">
-    <p class="sign">{{ coords.x }} : {{ coords.y }}</p>
-
     <div
-      class="pulse"
+      :class="dynPulseClasses"
       :style="{ top: coords.y + 'px', left: coords.x + 'px'}">
     </div>
   </div>
 </template>
 
 <style scoped>
-  .sign {
-    top: 5rem;
-    left: 5rem;
-    padding: 15px;
-    position: absolute;
-    background: thistle;
-    font-size: 28px;
-    border: 1px solid black;
-  }
-
   .pulse-container {
     overflow: hidden;
     
@@ -46,19 +23,22 @@
   }
 
   .pulse {
+    z-index: 1;
     position: inherit;
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.25);
-    /* opacity: 0; */
+    background: rgba(220, 20, 60, 0.5);
+    /* background: rgba(0, 0, 0, 0.25); */
+    /* background: rgba(135, 206, 250, 0.548); */
+    opacity: 0;
 
-    transform: translate(-50%, -50%);
+    translate: -1rem -1rem;
     transition: transform 0.1s ease;
   }
 
   .pulse--active {
-    animation: pulsing 1s ease-out 1;
+    animation: pulsing .25s ease-out 1;
   }
 
   @keyframes pulsing {

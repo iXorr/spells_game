@@ -1,4 +1,4 @@
 import PulseClick from './ui/PulseClick.vue'
-import { trackCoords, coords } from './model/trackCoords.js'
+import { trackClick, coords } from './model/trackClick.js'
 
-export { PulseClick, trackCoords, coords }
+export { PulseClick, trackClick, coords }
