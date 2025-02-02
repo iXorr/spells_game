@@ -1,14 +1,19 @@
 <script setup>
   import { onMounted, ref, watchEffect } from 'vue'
-  import { PulseClick, trackClick } from '@entities/pulseClick'
-  import { Shape } from '@shared/ui'
+
+  // import { PulseClick, animateClick } from '@entities/pulseClick'
+  // к первому div @click="(event) => animateClick(event)"
+
+  import { FallingBlocks } from '@entities/fallingBlocks'
 </script>
 
 <template>
-  <div class="root screen" @click="(event) => trackClick(event)">
-    <PulseClick />
+  <div class="root screen">
+    <!-- <PulseClick /> -->
 
-    <Shape />
+    <!-- <div class="widget-content"> -->
+      <FallingBlocks />
+    <!-- </div> -->
   </div>
 </template>
 
@@ -19,10 +24,10 @@
     background-position: center;
   }
   
-  @media (pointer: fine) {
+  /* @media (pointer: fine) {
     .root, 
     .root * {
       cursor: url('@shared/assets/cursors/wand.cur'), auto;
     }
-  }
+  } */
 </style>

@@ -1,1 +1,0 @@
-pulseClick лучше переместить в @shared/model (а coords - в @shared/store)

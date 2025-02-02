@@ -1,11 +1,12 @@
 <script setup>
-  import { coords, dynPulseClasses } from '../model/trackClick.js'
+  import { coords } from '../model/trackClick.js'
+  import { dynamicPulseClasses } from '../model/animateClick.js'
 </script>
  
 <template>
   <div class="pulse-container">
     <div
-      :class="dynPulseClasses"
+      :class="dynamicPulseClasses"
       :style="{ top: coords.y + 'px', left: coords.x + 'px'}">
     </div>
   </div>
@@ -14,23 +15,21 @@
 <style scoped>
   .pulse-container {
     overflow: hidden;
+    z-index: 1;
     
     position: absolute;
-    width: inherit;
-    height: inherit;
+    width: 100dvw;
+    height: 100dvh;
     
     pointer-events: none;
   }
 
   .pulse {
-    z-index: 1;
     position: inherit;
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    background: rgba(220, 20, 60, 0.5);
-    /* background: rgba(0, 0, 0, 0.25); */
-    /* background: rgba(135, 206, 250, 0.548); */
+    background: rgba(0, 0, 0, 0.25);
     opacity: 0;
 
     translate: -1rem -1rem;
