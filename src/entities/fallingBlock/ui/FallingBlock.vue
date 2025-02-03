@@ -1,5 +1,5 @@
 <script setup>
-  import { ref } from 'vue'
+  import { ref, onMounted } from 'vue'
   import { DiamondIcon } from '@shared/icons'
 
   const dynClasses = ref('falling-block')
@@ -7,34 +7,65 @@
   function loot() {
     dynClasses.value += ' falling-block--looted'
 
-    setTimeout(() => {
-      dynClasses.value = 'falling-block'
-    }, 1500)
+    // setTimeout(() => {
+    //   dynClasses.value = 'falling-block'
+    // }, 1500)
   }
+
+  const dynClasses2 = ref(Math.round(Math.random()) 
+    ? 'fall-animation' 
+    : 'fall-animation-reversed')
+
+  const randomX = Math.ceil(Math.random()*90)
+
+  const isMounted = ref(false)
+  const randomDelay = Math.ceil(Math.random()*5000)
+
+  onMounted(() => {
+    // await nextTick();
+
+    setTimeout(() => {
+      isMounted.value = true;
+    }, randomDelay);
+  });
 </script>
 
 <template>
-  <DiamondIcon :class="dynClasses" @click="loot" />
+  <!-- <p>{{ randomDelay }}</p> -->
+
+  <DiamondIcon
+    v-if="isMounted"
+    @mousedown="loot"
+    @touchstart="loot"
+    :class="dynClasses + ' ' + dynClasses2"
+    :style="{ left: randomX + '%' }" />
 </template>
 
 <style scoped>
-  p {
-    background: white;
-    position: absolute;
-    padding: 1rem;
-  }
-
   .falling-block {
-    filter: drop-shadow(.25rem .25rem .5rem rgba(0, 0, 0, 0.25));
+    padding: .5rem;
+    /* background: red; */
 
+    filter: drop-shadow(.25rem .25rem .5rem #00000040);
     position: absolute;
     width: 3rem;
     height: 3rem;
-
     will-change: contents;
-    transition: scale var(--fast-transition), opacity var(--slow-transition);
+    transition: 
+      scale var(--fast-transition), 
+      opacity var(--slow-transition);
+  }
 
-    animation: spinning 1.5s linear infinite, falling 3s ease-in-out infinite;
+  .fall-animation {
+    animation: 
+      spinning 1.5s linear infinite, 
+      falling 3s ease-in-out 1 forwards;
+  }
+
+  .fall-animation-reversed {
+    animation: 
+      spinning 1.5s linear infinite reverse, 
+      falling 3s ease-in-out 1 forwards;
   }
 
   .falling-block:active {
@@ -59,11 +90,11 @@
 
   @keyframes falling {
     from {
-      translate: 0 -25dvh;
+      bottom: 110%;
     }
 
     to {
-      translate: 0 70dvh;
+      bottom: -10%;
     }
   }
 </style>

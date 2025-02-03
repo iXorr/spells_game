@@ -1,38 +1,87 @@
 <script setup>
+  import { ref } from 'vue'
   import { FallingBlock } from '@entities/fallingBlock'
+
+  const blocksAmount = ref(10)
 </script>
 
 <template>
   <div class="local-root screen">
-    <FallingBlock v-for="i in 5" class="example" />
+    <div class="info">
+      <p>Кол-во: {{ blocksAmount }}</p>
+
+      <div class="btns">
+        <button 
+          @click="blocksAmount++" 
+          :disabled="blocksAmount >= 10 ? true : false">+</button>
+
+        <button
+          @click="blocksAmount--"
+          :disabled="blocksAmount <= 1 ? true : false">-</button>
+      </div>
+    </div>
+
+    <FallingBlock v-for="i in blocksAmount" />
   </div>
 </template>
 
 <style scoped>
-  .example:nth-of-type(1) {
+  .info {
+    right: 1rem;
+    bottom: 1rem; 
+    position: absolute;
+    z-index: 3;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    background: lightgray;
+  }
+
+  .info p {
+    margin-bottom: 0.35rem;
+    font-size: 0.75rem;
+  }
+
+  button {
+    top: 1rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+
+  button:first-of-type {
+    margin-right: 0.25rem;
+  }
+
+  /* .example:nth-of-type(1) {
     top: 5rem;
-    left: 5rem;
+    left: 3rem;
   }
 
   .example:nth-of-type(2) {
     top: -5rem;
-    left: 10rem;
+    left: 6rem;
   }
 
   .example:nth-of-type(3) {
     top: 1rem;
-    left: 15rem;
+    left: 9rem;
   }
 
   .example:nth-of-type(4) {
     top: 3rem;
-    left: 20rem;
+    left: 12rem;
   }
 
   .example:nth-of-type(5) {
     top: -1rem;
-    left: 25rem;
-  }
+    left: 15rem;
+  } */
 
   .local-root {
     background: rgb(0, 109, 109);
@@ -44,8 +93,8 @@
   }
   
   /* @media (pointer: fine) {
-    .root, 
-    .root * {
+    .local-root, 
+    .local-root * {
       cursor: url('@shared/assets/cursors/wand.cur'), auto;
     }
   } */

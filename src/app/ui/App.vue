@@ -7,3 +7,9 @@
     <Game />
   </div>
 </template>
+
+<style>
+  * {
+    overflow: hidden; 
+  }
+</style>
