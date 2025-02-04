@@ -3,23 +3,30 @@
   import { FallingBlock } from '@entities/fallingBlock'
 
   const blocksAmount = ref(10)
+  // const msg = ref('Level 0')
+
+  // setInterval(() => {
+  //   blocksAmount.value += 5
+  //   msg.value = `Level ${blocksAmount.value/5}`
+  // }, 7500);
 </script>
 
 <template>
   <div class="local-root screen">
-    <div class="info">
+    <!-- <div class="info">{{ msg }}</div> -->
+    <!-- <div class="info">
       <p>Кол-во: {{ blocksAmount }}</p>
 
       <div class="btns">
         <button 
           @click="blocksAmount++" 
-          :disabled="blocksAmount >= 10 ? true : false">+</button>
+          :disabled="blocksAmount >= 20 ? true : false">+</button>
 
         <button
           @click="blocksAmount--"
           :disabled="blocksAmount <= 1 ? true : false">-</button>
       </div>
-    </div>
+    </div> -->
 
     <FallingBlock v-for="i in blocksAmount" />
   </div>
