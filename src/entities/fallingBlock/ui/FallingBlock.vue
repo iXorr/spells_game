@@ -1,52 +1,60 @@
 <script setup>
-  import { ref, onMounted, computed } from 'vue'
+  import { ref, onMounted } from 'vue'
   import { DiamondIcon, BombIcon } from '@shared/icons'
+  import { defineIsDiamond, getStyle, getDelay } from '../model/getRandom'
+
+  // сделать функцию, которая при клике отправляет, какой блок был задет???
+  // также можно реализовать entity gameScore, 
+  // чтобы именно ЕГО изменять через эту функцию
+
+  // также в entities можно добавить gameSettings
+  // с динамическим изменением по мере прохождения игроком
 
   const isMounted = ref(false)
-  const isDiamond = Math.random() > 0.2
-  const randomDelay = Math.ceil(Math.random() * 5000)
-  const randomX = Math.ceil(Math.random() * 90)
-  const animationDirection = Math.random() > 0.5 ? 'normal' : 'reverse'
 
-  const isLooted = ref(false)
-  function loot() {
-    isLooted.value = true
+  const currentDelay = getDelay()
+  const currentStyle = getStyle()
+  const isCurrentDiamond = defineIsDiamond()
+
+  const isCompleted = ref(false)
+  const isHidden = ref('')
+
+  function destroy() {
+    isCompleted.value = true
   }
 
-  const blockClasses = computed(() => [
-    'falling-block',
-    { 'falling-block--looted': isLooted.value },
-    `fall-animation-${animationDirection}`
-  ])
-
-  const animationDuration = Math.random() * 2 + 2.5
-
-  const maxBlockSizing = 2
-  const minBlockSizing = 1
-  const blockSizing = minBlockSizing + (maxBlockSizing - minBlockSizing) * (4.5 - animationDuration) / (4.5 - 2.5)
-
-  const blockStyle = computed(() => ({
-    left: `${randomX}%`,
-    '--animation-duration': animationDuration + 's',
-    '--block-sizing': blockSizing
-  }))
+  function hide() {
+    isHidden.value = 'falling-block--looted'
+    
+    setTimeout(() => {
+      destroy()
+    }, 500);
+  }
 
   onMounted(() => {
     setTimeout(() => {
       isMounted.value = true
-    }, randomDelay)
+    }, currentDelay)
   })
 </script>
 
 <template>
   <div
-    v-if="isMounted"
-    @mousedown="loot"
-    @touchstart="loot"
-    :class="blockClasses"
-    :style="blockStyle">
+    v-if="isMounted && !isCompleted"
+    
+    @mousedown="hide"
+    @touchstart="hide"
+    @animationend="destroy"
 
-    <DiamondIcon v-if="isDiamond" />
+    :isDiamond="isCurrentDiamond"
+    :style="currentStyle"
+
+    :class="isHidden"
+    class="falling-block
+      falling-block--offset
+      falling-block--animated">
+
+    <DiamondIcon v-if="isCurrentDiamond" />
     <BombIcon v-else />
   </div>
 </template>
@@ -58,25 +66,28 @@
     height: 3rem;
     padding: 0.5rem;
     filter: drop-shadow(0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.4));
-    will-change: contents;
-    transition: scale 0.2s ease, opacity 0.5s ease;
-  }
 
-  .fall-animation-normal {
-    animation: 
-      spinning 1.5s linear infinite, 
-      falling var(--animation-duration) ease 1 forwards;
-  }
-
-  .fall-animation-reverse {
-    animation: 
-      spinning 1.5s linear infinite reverse, 
-      falling var(--animation-duration) ease 1 forwards;
+    scale: var(--block-sizing);
   }
 
   .falling-block:active {
     cursor: grabbing;
-    scale: 1.25;
+    scale: calc(var(--block-sizing) * 1.25);
+  }
+
+  .falling-block--animated {
+    will-change: contents;
+    transition: 
+      scale 0.2s ease, 
+      opacity 0.5s ease;
+
+    animation: 
+      spinning calc(var(--animation-duration) * 0.3) linear infinite var(--animation-direction), 
+      falling var(--animation-duration) cubic-bezier(0.25, 0.1, 0.25, 1) 1 forwards;
+  }
+
+  .falling-block--offset {
+    left: var(--left-offset);
   }
 
   .falling-block--looted {
@@ -94,11 +105,12 @@
   }
 
   @keyframes falling {
-    from {
+    0% {
       bottom: 100%;
     }
-    to {
-      bottom: -50%;
+
+    100% {
+      bottom: -25%;
     }
   }
 </style>

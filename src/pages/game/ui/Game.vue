@@ -1,34 +1,10 @@
 <script setup>
-  import { ref } from 'vue'
-  import { FallingBlock } from '@entities/fallingBlock'
-
-  const blocksAmount = ref(10)
-  // const msg = ref('Level 0')
-
-  // setInterval(() => {
-  //   blocksAmount.value += 5
-  //   msg.value = `Level ${blocksAmount.value/5}`
-  // }, 7500);
+  import { BlocksField } from '@widgets/BlocksField'
 </script>
 
 <template>
   <div class="local-root screen">
-    <!-- <div class="info">{{ msg }}</div> -->
-    <!-- <div class="info">
-      <p>Кол-во: {{ blocksAmount }}</p>
-
-      <div class="btns">
-        <button 
-          @click="blocksAmount++" 
-          :disabled="blocksAmount >= 20 ? true : false">+</button>
-
-        <button
-          @click="blocksAmount--"
-          :disabled="blocksAmount <= 1 ? true : false">-</button>
-      </div>
-    </div> -->
-
-    <FallingBlock v-for="i in blocksAmount" />
+    <BlocksField />
   </div>
 </template>
 

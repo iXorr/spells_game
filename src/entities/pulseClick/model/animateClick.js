@@ -5,6 +5,10 @@ const PULSE_ANIMATION_DELAY = 150
 
 const dynamicPulseClasses = ref('pulse')
 
+/**
+ * FUNCTION DESCR
+ * @param {string} parent_event FUNCTION PARAM DESCR
+ */
 function animateClick(parent_event) {
   trackClick(parent_event)
 
