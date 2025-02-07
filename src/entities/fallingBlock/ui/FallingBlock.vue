@@ -3,12 +3,12 @@
   import { defineIsDiamond, getStyle, getDelay } from '../model/getRandom'
   import { useActions } from '../model/visualActions'
   import { useDelayMount } from '../model/delayMount'
+  import { changeScoreOnClick, changeScoreOnFall } from '../model/scoreActions'
 
   const currentDelay = getDelay()
   const currentStyle = getStyle()
   const isCurrentDiamond = defineIsDiamond()
-
-  const { isCompleted, isHidden, destroy, hide } = useActions()
+  const { isCompleted, isLooted, destroyBlock } = useActions()
   const { isMounted } = useDelayMount(currentDelay)
 </script>
 
@@ -17,14 +17,14 @@
     v-if="isMounted && !isCompleted"
 
     :style="currentStyle"
-    :class="isHidden"
+    :class="isLooted"
     class="falling-block
       falling-block--offset
       falling-block--animated"
       
-    @mousedown="hide"
-    @touchstart="hide"
-    @animationend="destroy">
+    @mousedown="changeScoreOnClick(isCurrentDiamond, destroyBlock)"
+    @touchstart="changeScoreOnClick(isCurrentDiamond, destroyBlock)"
+    @animationend="changeScoreOnFall(isCurrentDiamond, destroyBlock)">
 
     <DiamondIcon v-if="isCurrentDiamond" />
     <BombIcon v-else />

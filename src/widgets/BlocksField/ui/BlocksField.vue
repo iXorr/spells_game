@@ -1,16 +1,39 @@
 <script setup>
-  import { onMounted, ref } from 'vue'
+  import { ref, watchEffect } from 'vue'
   import { FallingBlock } from '@entities/fallingBlock'
-  import { gameScore, increaseScore, decreaseScore } from '@entities/gameScore'
+  import { collectedDiamonds, skippedDiamonds } from '@entities/gameScore'
 
-  const blocksAmount = ref(10)
-  const isRoundActive = ref(false)
+  // этот компонент отвечает чисто за 
+  // бесконечный спавн по нескольким количествам
+
+  // 30 - невозможный уровень
+  // 20 - сложный
+  // 10 - нормальный
+  // 5 - лёгкий
+
+  // идея со спавном: сделать верёвку,
+  // которая будет спускать вниз партию блоков
+
+
+  // можно сделать другой виджет или shared, который
+  // будет говорить игроку о том, что он, например, уронил алмаз
+  // или схватил бочку с отходами
+
+  // вот это можно будет экспортировать 
+  // или просто использовать в другом месте!!!
+  const blocksAmount = ref(30)
+  const isRoundActive = ref(true)
+
+  watchEffect(() => {
+    if (skippedDiamonds.value >= 3)
+      isRoundActive.value = false
+  })
 </script>
 
 <template>
   <div>    
     <div class="panel">
-      <p>{{ gameScore }}</p>
+      <p>{{ collectedDiamonds }} : {{ skippedDiamonds }}</p>
 
       <div class="btns">
         <button 
@@ -21,16 +44,12 @@
     </div>
 
     <template
-      v-if="isRoundActive"
-      class="round" >
+    v-if="isRoundActive"
+    class="round" >
 
       <FallingBlock
         v-for="i in blocksAmount"
-        :key="i"
-
-        @mousedown="console.log('!')"
-        @touchstart="console.log('!')"
-        @animationend="console.log('...блок пропущен!')" />
+        :key="i" />
     </template>
   </div>
 </template>

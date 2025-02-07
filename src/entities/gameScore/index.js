@@ -1,11 +1,9 @@
 import { 
-    gameScore, 
-    decreaseScore, 
-    increaseScore 
-} from './model/handleScore'
+    collectedDiamonds, 
+    skippedDiamonds
+} from './store/handleScore'
 
 export { 
-    gameScore, 
-    decreaseScore, 
-    increaseScore 
+    collectedDiamonds, 
+    skippedDiamonds
 }

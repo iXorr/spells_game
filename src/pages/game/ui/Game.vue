@@ -1,5 +1,5 @@
 <script setup>
-  // добавить возможность перейти в главное меню и настройки
+  // а что будет здесь?
   import { BlocksField } from '@widgets/BlocksField'
 </script>
 
