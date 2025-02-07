@@ -1,25 +1,16 @@
 <script setup>
   import { onMounted, ref } from 'vue'
   import { FallingBlock } from '@entities/fallingBlock'
+  import { gameScore, increaseScore, decreaseScore } from '@entities/gameScore'
 
   const blocksAmount = ref(10)
   const isRoundActive = ref(false)
-
-  onMounted(() => {
-    setInterval(() => {
-      console.log('TEST')
-    }, 500);
-  })
 </script>
 
 <template>
   <div>    
     <div class="panel">
-      <p>{{ blocksAmount }}</p>
-      <div class="btns">
-        <button @click="blocksAmount++">+</button>
-        <button @click="blocksAmount--">-</button>
-      </div>
+      <p>{{ gameScore }}</p>
 
       <div class="btns">
         <button 

@@ -1,7 +1,7 @@
 <script setup>
   import { DiamondIcon, BombIcon } from '@shared/icons'
   import { defineIsDiamond, getStyle, getDelay } from '../model/getRandom'
-  import { useActions } from '../model/userActions'
+  import { useActions } from '../model/visualActions'
   import { useDelayMount } from '../model/delayMount'
 
   const currentDelay = getDelay()
@@ -16,9 +16,7 @@
   <div
     v-if="isMounted && !isCompleted"
 
-    :isDiamond="isCurrentDiamond"
     :style="currentStyle"
-
     :class="isHidden"
     class="falling-block
       falling-block--offset
@@ -26,7 +24,7 @@
       
     @mousedown="hide"
     @touchstart="hide"
-    @animationend="destroy" >
+    @animationend="destroy">
 
     <DiamondIcon v-if="isCurrentDiamond" />
     <BombIcon v-else />
