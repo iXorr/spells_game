@@ -1,30 +1,16 @@
 <script setup>
-  import { ref, watchEffect } from 'vue'
   import { FallingBlock } from '@entities/fallingBlock'
   import { collectedDiamonds, skippedDiamonds } from '@entities/gameScore'
-
-  const isRoundActive = ref(true)
-
-  const blocks = ref([])
-
-  setInterval(() => {
-    blocks.value.push({ id: Date.now() })
-  }, 500)
-
-  watchEffect(() => {
-    if (skippedDiamonds.value >= 3) {
-      skippedDiamonds.value = 0
-      isRoundActive.value = false
-      blocks.value = []
-    }
-  })
+  import { watchingLose } from '../model/watchingLose';
+  import { blocks } from '../model/spawningBlocks'
+  import { isRoundActive } from '../store/roundActivity'
+  
+  watchingLose()
 </script>
 
 <template>
   <div class="local-root">    
     <div class="panel">
-      <p>{{ spawnInterval }}</p>
-
       <p>{{ collectedDiamonds }} : {{ skippedDiamonds }}</p>
 
       <div class="btns">
@@ -35,7 +21,7 @@
       </div>
     </div>
 
-    <Transition>
+    <Transition name="fading">
       <div v-if="isRoundActive">
 
         <FallingBlock
@@ -75,13 +61,13 @@
     font-size: 0.75rem;
   }
 
-  .v-enter-active,
-  .v-leave-active {
+  .fading-enter-active,
+  .fading-leave-active {
     transition: opacity 0.5s ease;
   }
 
-  .v-enter-from,
-  .v-leave-to {
+  .fading-enter-from,
+  .fading-leave-to {
     opacity: 0;
   }
 </style>

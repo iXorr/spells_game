@@ -1,7 +1,7 @@
 import { 
     collectedDiamonds, 
     skippedDiamonds
-} from './store/handleScore'
+} from './store/items'
 
 export { 
     collectedDiamonds, 

@@ -1,11 +1,14 @@
 <script setup>
-  // а что будет здесь?
+  // здесь будет обращение к store BlocksField
   import { BlocksField } from '@widgets/BlocksField'
+  import { ButtonContainer } from '@widgets/ButtonContainer'
 </script>
 
 <template>
   <div class="local-root screen">
     <BlocksField />
+    
+    <ButtonContainer />
   </div>
 </template>
 
@@ -29,11 +32,4 @@
     
     cursor: grab;
   }
-  
-  /* @media (pointer: fine) {
-    .local-root, 
-    .local-root * {
-      cursor: url('@shared/assets/cursors/wand.cur'), auto;
-    }
-  } */
 </style>
