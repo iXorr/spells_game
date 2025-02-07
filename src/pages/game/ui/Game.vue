@@ -1,4 +1,5 @@
 <script setup>
+  // добавить возможность перейти в главное меню и настройки
   import { BlocksField } from '@widgets/BlocksField'
 </script>
 
@@ -40,31 +41,6 @@
   button:first-of-type {
     margin-right: 0.25rem;
   }
-
-  /* .example:nth-of-type(1) {
-    top: 5rem;
-    left: 3rem;
-  }
-
-  .example:nth-of-type(2) {
-    top: -5rem;
-    left: 6rem;
-  }
-
-  .example:nth-of-type(3) {
-    top: 1rem;
-    left: 9rem;
-  }
-
-  .example:nth-of-type(4) {
-    top: 3rem;
-    left: 12rem;
-  }
-
-  .example:nth-of-type(5) {
-    top: -1rem;
-    left: 15rem;
-  } */
 
   .local-root {
     background: rgb(0, 109, 109);

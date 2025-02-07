@@ -1,50 +1,20 @@
 <script setup>
-  import { ref, onMounted } from 'vue'
   import { DiamondIcon, BombIcon } from '@shared/icons'
   import { defineIsDiamond, getStyle, getDelay } from '../model/getRandom'
-
-  // сделать функцию, которая при клике отправляет, какой блок был задет???
-  // также можно реализовать entity gameScore, 
-  // чтобы именно ЕГО изменять через эту функцию
-
-  // также в entities можно добавить gameSettings
-  // с динамическим изменением по мере прохождения игроком
-
-  const isMounted = ref(false)
+  import { useActions } from '../model/userActions'
+  import { useDelayMount } from '../model/delayMount'
 
   const currentDelay = getDelay()
   const currentStyle = getStyle()
   const isCurrentDiamond = defineIsDiamond()
 
-  const isCompleted = ref(false)
-  const isHidden = ref('')
-
-  function destroy() {
-    isCompleted.value = true
-  }
-
-  function hide() {
-    isHidden.value = 'falling-block--looted'
-    
-    setTimeout(() => {
-      destroy()
-    }, 500);
-  }
-
-  onMounted(() => {
-    setTimeout(() => {
-      isMounted.value = true
-    }, currentDelay)
-  })
+  const { isCompleted, isHidden, destroy, hide } = useActions()
+  const { isMounted } = useDelayMount(currentDelay)
 </script>
 
 <template>
   <div
     v-if="isMounted && !isCompleted"
-    
-    @mousedown="hide"
-    @touchstart="hide"
-    @animationend="destroy"
 
     :isDiamond="isCurrentDiamond"
     :style="currentStyle"
@@ -52,7 +22,11 @@
     :class="isHidden"
     class="falling-block
       falling-block--offset
-      falling-block--animated">
+      falling-block--animated"
+      
+    @mousedown="hide"
+    @touchstart="hide"
+    @animationend="destroy" >
 
     <DiamondIcon v-if="isCurrentDiamond" />
     <BombIcon v-else />

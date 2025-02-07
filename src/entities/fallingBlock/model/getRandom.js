@@ -1,5 +1,3 @@
-// нужно добавить долбанный множитель для сложности
-
 export function defineIsDiamond() {
   return Math.random() > 0.2
 }

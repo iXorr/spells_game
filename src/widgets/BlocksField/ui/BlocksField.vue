@@ -1,38 +1,75 @@
 <script setup>
-  import { ref, onUnmounted } from 'vue'
-  import { SpawnedBlock } from '@features/spawn-block'
+  import { onMounted, ref } from 'vue'
+  import { FallingBlock } from '@entities/fallingBlock'
 
-  const blocksAmount = ref(0)
+  const blocksAmount = ref(10)
+  const isRoundActive = ref(false)
 
-  const addBlock = () => {
-    blocksAmount.value++
-  }
-
-  const intervalId = setInterval(addBlock, 1500)
-
-  onUnmounted(() => {
-    clearInterval(intervalId)
+  onMounted(() => {
+    setInterval(() => {
+      console.log('TEST')
+    }, 500);
   })
 </script>
 
 <template>
-  <!-- внутри должны быть пропсы, которые передадут сложность игры, а она будет влиять на спавн сущностей -->
+  <div>    
+    <div class="panel">
+      <p>{{ blocksAmount }}</p>
+      <div class="btns">
+        <button @click="blocksAmount++">+</button>
+        <button @click="blocksAmount--">-</button>
+      </div>
 
-  <div>
-    <SpawnedBlock 
-      v-for="i in blocksAmount" 
-      :key="i" />
+      <div class="btns">
+        <button 
+          @click="isRoundActive = !isRoundActive">
+          {{ isRoundActive ? 'Stop' : 'Start' }}
+        </button>
+      </div>
+    </div>
+
+    <template
+      v-if="isRoundActive"
+      class="round" >
+
+      <FallingBlock
+        v-for="i in blocksAmount"
+        :key="i"
+
+        @mousedown="console.log('!')"
+        @touchstart="console.log('!')"
+        @animationend="console.log('...блок пропущен!')" />
+    </template>
   </div>
 </template>
 
-<!-- <script setup>
-  import { ref } from 'vue'
-  import { SpawnedBlock } from '@features/spawn-block'
+<style scoped>
+  .panel {
+    position: absolute;
+    z-index: 3;
 
-  const blocksAmount = ref(10)
-</script>
+    bottom: 1rem;
+    left: 1rem;
 
-<template>
-  <SpawnedBlock 
-    v-for="i in blocksAmount" />
-</template> -->
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: thistle;
+    border-radius: 1rem;
+  }
+
+  .btns {
+    margin-top: 0.5rem;
+  }
+
+  .btns > *:first-child {
+    margin-right: .25rem;
+  }
+
+  button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+</style>
