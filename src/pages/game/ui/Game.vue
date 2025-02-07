@@ -10,27 +10,6 @@
 </template>
 
 <style scoped>
-  .info {
-    right: 1rem;
-    bottom: 1rem; 
-    position: absolute;
-    z-index: 3;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    padding: 1rem 2rem;
-    border-radius: 1rem;
-    background: lightgray;
-  }
-
-  .info p {
-    margin-bottom: 0.35rem;
-    font-size: 0.75rem;
-  }
-
   button {
     top: 1rem;
     padding: 0.25rem 0.5rem;
@@ -47,7 +26,7 @@
     /* background-image: url("@shared/assets/img/playground.gif");
     background-size: cover;
     background-position: center; */
-
+    
     cursor: grab;
   }
   

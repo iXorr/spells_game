@@ -3,36 +3,28 @@
   import { FallingBlock } from '@entities/fallingBlock'
   import { collectedDiamonds, skippedDiamonds } from '@entities/gameScore'
 
-  // этот компонент отвечает чисто за 
-  // бесконечный спавн по нескольким количествам
-
-  // 30 - невозможный уровень
-  // 20 - сложный
-  // 10 - нормальный
-  // 5 - лёгкий
-
-  // идея со спавном: сделать верёвку,
-  // которая будет спускать вниз партию блоков
-
-
-  // можно сделать другой виджет или shared, который
-  // будет говорить игроку о том, что он, например, уронил алмаз
-  // или схватил бочку с отходами
-
-  // вот это можно будет экспортировать 
-  // или просто использовать в другом месте!!!
-  const blocksAmount = ref(30)
   const isRoundActive = ref(true)
 
+  const blocks = ref([])
+
+  setInterval(() => {
+    blocks.value.push({ id: Date.now() })
+  }, 500)
+
   watchEffect(() => {
-    if (skippedDiamonds.value >= 3)
+    if (skippedDiamonds.value >= 3) {
+      skippedDiamonds.value = 0
       isRoundActive.value = false
+      blocks.value = []
+    }
   })
 </script>
 
 <template>
-  <div>    
+  <div class="local-root">    
     <div class="panel">
+      <p>{{ spawnInterval }}</p>
+
       <p>{{ collectedDiamonds }} : {{ skippedDiamonds }}</p>
 
       <div class="btns">
@@ -43,14 +35,14 @@
       </div>
     </div>
 
-    <template
-    v-if="isRoundActive"
-    class="round" >
+    <Transition>
+      <div v-if="isRoundActive">
 
-      <FallingBlock
-        v-for="i in blocksAmount"
-        :key="i" />
-    </template>
+        <FallingBlock
+          v-for="block in blocks"
+          :key="block.id" />
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -81,5 +73,15 @@
   button {
     padding: 0.25rem 0.5rem;
     font-size: 0.75rem;
+  }
+
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 0.5s ease;
+  }
+
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
   }
 </style>

@@ -22,8 +22,7 @@
       falling-block--offset
       falling-block--animated"
       
-    @mousedown="changeScoreOnClick(isCurrentDiamond, destroyBlock)"
-    @touchstart="changeScoreOnClick(isCurrentDiamond, destroyBlock)"
+    @pointerdown="changeScoreOnClick(isCurrentDiamond, destroyBlock)"
     @animationend="changeScoreOnFall(isCurrentDiamond, destroyBlock)">
 
     <DiamondIcon v-if="isCurrentDiamond" />
