@@ -1,29 +1,35 @@
 <script setup>
+  import { ref } from 'vue'
   import { DiamondIcon, BombIcon } from '@shared/icons'
-  import { defineIsDiamond, getStyle, getDelay } from '../model/getRandom'
-  import { useActions } from '../model/visualActions'
-  import { useDelayMount } from '../model/delayMount'
-  import { changeScoreOnClick, changeScoreOnFall } from '../model/scoreActions'
+  import { defineIsDiamond, getStyle } from '../model/getRandom'
 
-  const currentDelay = getDelay()
-  const currentStyle = getStyle()
-  const isCurrentDiamond = defineIsDiamond()
-  const { isCompleted, isLooted, destroyBlock } = useActions()
-  const { isMounted } = useDelayMount(currentDelay)
+  let currentStyle = getStyle()
+
+  const checkFalling = (event) => {
+    if (event.animationName.includes('falling')) {
+      console.log('BLOCK IS FALLEN')
+    }
+  }
+
+  let isCurrentDiamond = defineIsDiamond()
+  
+  // return {
+  //   '--left-offset': randomX + '%',
+  //   '--animation-duration': animationDuration + 's',
+  //   '--animation-direction': animationDirection,
+  //   '--block-sizing': blockSizing
+  // }
 </script>
 
 <template>
   <div
-    v-if="isMounted && !isCompleted"
-
     :style="currentStyle"
-    :class="isLooted"
     class="falling-block
       falling-block--offset
       falling-block--animated"
       
-    @pointerdown="changeScoreOnClick(isCurrentDiamond, destroyBlock)"
-    @animationend="changeScoreOnFall(isCurrentDiamond, destroyBlock)">
+    @pointerdown="changeScoreOnClick(isCurrentDiamond)"
+    @animationiteration="checkFalling">
 
     <DiamondIcon v-if="isCurrentDiamond" />
     <BombIcon v-else />
@@ -54,7 +60,7 @@
 
     animation: 
       spinning calc(var(--animation-duration) * 0.3) linear infinite var(--animation-direction), 
-      falling var(--animation-duration) cubic-bezier(0.25, 0.1, 0.25, 1) 1 forwards;
+      falling var(--animation-duration) cubic-bezier(0.25, 0.1, 0.25, 1) infinite forwards;
   }
 
   .falling-block--offset {

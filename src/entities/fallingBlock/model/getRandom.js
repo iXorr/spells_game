@@ -1,3 +1,7 @@
+/**
+ * определяет, будет ли блок алмазом
+ * @returns {boolean} истину с вероятностью в 80%
+ */
 export function defineIsDiamond() {
   return Math.random() > 0.2
 }
@@ -6,6 +10,10 @@ export function getDelay() {
   return Math.ceil(Math.random() * 5000)
 }
 
+/**
+ * определяет случайный набор стилей
+ * @returns CSS-переменные
+ */
 export function getStyle() {
   const randomX = Math.ceil(Math.random() * 90)
   
@@ -17,7 +25,7 @@ export function getStyle() {
   const blockSizing = Math.max(blockMinSize, blockMaxSize - (animationDuration - 2.5) * 0.8);
 
   return {
-    '--left-offset': `${randomX}%`,
+    '--left-offset': randomX + '%',
     '--animation-duration': animationDuration + 's',
     '--animation-direction': animationDirection,
     '--block-sizing': blockSizing

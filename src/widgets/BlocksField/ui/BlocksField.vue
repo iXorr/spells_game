@@ -2,7 +2,6 @@
   import { FallingBlock } from '@entities/fallingBlock'
   import { collectedDiamonds, skippedDiamonds } from '@entities/gameScore'
   import { watchingLose } from '../model/watchingLose';
-  import { blocks } from '../model/spawningBlocks'
   import { isRoundActive } from '../store/roundActivity'
   
   watchingLose()
@@ -10,7 +9,7 @@
 
 <template>
   <div class="local-root">    
-    <div class="panel">
+    <!-- <div class="panel">
       <p>{{ collectedDiamonds }} : {{ skippedDiamonds }}</p>
 
       <div class="btns">
@@ -19,14 +18,14 @@
           {{ isRoundActive ? 'Stop' : 'Start' }}
         </button>
       </div>
-    </div>
+    </div> -->
 
     <Transition name="fading">
       <div v-if="isRoundActive">
 
         <FallingBlock
-          v-for="block in blocks"
-          :key="block.id" />
+          v-for="i in 5"
+          :key="i" />
       </div>
     </Transition>
   </div>

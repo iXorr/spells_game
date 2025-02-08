@@ -7,8 +7,6 @@
 <template>
   <div class="local-root screen">
     <BlocksField />
-    
-    <ButtonContainer />
   </div>
 </template>
 
