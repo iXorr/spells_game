@@ -1,38 +1,14 @@
 <script setup>
-  import { ref } from 'vue'
   import { DiamondIcon, BombIcon } from '@shared/icons'
-  import { defineIsDiamond, getStyleVars } from '../model/getRandom'
-  import { changeScoreOnClick, changeScoreOnFall } from '../model/scoreActions'
-  
-  const isCurrentDiamond = ref(defineIsDiamond())
-  const currentStyleVars = ref(getStyleVars())  
-  const motionClasses = ref('falling-block--animated')
+  import { createLifeCycle } from '../model/createLifeCycle'
 
-  const updateBlock = () => {
-    motionClasses.value = null
-    isCurrentDiamond.value = defineIsDiamond()
-    currentStyleVars.value = getStyleVars()
-    
-    setTimeout(() => {
-      motionClasses.value = 'falling-block--animated'
-    }, 250)
-  }
-
-  const checkFalling = (event) => {
-    if (event.animationName.includes('falling')) {
-      changeScoreOnFall(isCurrentDiamond.value)
-      updateBlock()
-    }
-  }
-
-  const checkClicking = () => {
-    changeScoreOnClick(isCurrentDiamond.value)
-    motionClasses.value += ' falling-block--looted'
-
-    setTimeout(() => {
-      updateBlock()
-    }, 500)
-  }
+  const { 
+    isCurrentDiamond, 
+    currentStyleVars, 
+    motionClasses, 
+    checkFalling, 
+    checkClicking 
+  } = createLifeCycle()
 </script>
 
 <template>
@@ -67,7 +43,7 @@
   }
 
   .falling-block--animated {
-    will-change: contents;
+    will-change: transform, opacity;
     transition: 
       scale 0.2s ease, 
       opacity 0.5s ease;
