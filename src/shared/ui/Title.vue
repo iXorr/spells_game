@@ -2,8 +2,8 @@
   <section class="header">
     <div class="title-wrapper">
       <h1 class="sweet-title">
-        <span data-text="Sweet">Sweet</span>
-        <span data-text="Stuff">Stuff</span>
+        <span data-text="Falling">Falling</span>
+        <span data-text="Blocks">Blocks</span>
       </h1>
       <span class="top-title">Get me all the</span>
       <span class="bottom-title">You can find</span>

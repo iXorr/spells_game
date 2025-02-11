@@ -45,6 +45,13 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
+a,
+a:visited,
+a:focus {
+  color: #000;
+  text-decoration: none;
+}
+
 svg {
   width: 1.5rem;
   height: 1.5rem;

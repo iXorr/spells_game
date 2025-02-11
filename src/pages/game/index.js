@@ -1,3 +1,2 @@
-import Game from './ui/Game.vue'
-
+import Game from "./ui/Game.vue";
 export { Game }

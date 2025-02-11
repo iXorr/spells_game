@@ -1,33 +1,76 @@
 <script setup>
-  // здесь будет обращение к store BlocksField
-  import { BlocksField } from '@widgets/BlocksField'
-  import { ButtonContainer } from '@widgets/ButtonContainer'
+  import { collectedDiamonds, skippedDiamonds } from '@entities/gameScore'
+  import { FallingBlock } from '@entities/fallingBlock'
+  import { watchingLose } from '../model/watchingLose';
+  import { isRoundActive } from '../store/roundActivity'
+  
+  watchingLose()
 </script>
 
 <template>
-  <div class="local-root screen">
-    <BlocksField />
+  <div class="local-root screen">    
+    <div class="panel">
+      <p>{{ collectedDiamonds }} : {{ skippedDiamonds }}</p>
+
+      <div class="btns">
+        <button 
+          @click="isRoundActive = !isRoundActive">
+          {{ isRoundActive ? 'Stop' : 'Start' }}
+        </button>
+      </div>
+    </div>
+
+    <Transition name="fading">
+      <div v-if="isRoundActive" class="falling-block--container">
+
+        <FallingBlock
+          v-for="i in 10"
+          :key="i" />
+      </div>
+    </Transition>
   </div>
 </template>
 
 <style scoped>
+  .local-root {
+    position: relative;
+    overflow: hidden;
+
+    background: #006d6d;
+    cursor: grab;
+  }
+
+  .panel {
+    position: absolute;
+    z-index: 3;
+
+    bottom: 1rem;
+    left: 1rem;
+
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: thistle;
+    border-radius: 1rem;
+  }
+
+  .btns {
+    margin-top: 0.5rem;
+  }
+
   button {
-    top: 1rem;
     padding: 0.25rem 0.5rem;
     font-size: 0.75rem;
-    cursor: pointer;
   }
 
-  button:first-of-type {
-    margin-right: 0.25rem;
+  .fading-enter-active,
+  .fading-leave-active {
+    transition: opacity 0.5s ease;
   }
 
-  .local-root {
-    background: rgb(0, 109, 109);
-    /* background-image: url("@shared/assets/img/playground.gif");
-    background-size: cover;
-    background-position: center; */
-    
-    cursor: grab;
+  .fading-enter-from,
+  .fading-leave-to {
+    opacity: 0;
   }
 </style>
