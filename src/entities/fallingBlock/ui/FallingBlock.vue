@@ -1,34 +1,47 @@
 <script setup>
   import { ref } from 'vue'
   import { DiamondIcon, BombIcon } from '@shared/icons'
-  import { defineIsDiamond, getStyle } from '../model/getRandom'
+  import { defineIsDiamond, getStyleVars } from '../model/getRandom'
+  import { changeScoreOnClick, changeScoreOnFall } from '../model/scoreActions'
+  
+  const isCurrentDiamond = ref(defineIsDiamond())
+  const currentStyleVars = ref(getStyleVars())  
+  const motionClasses = ref('falling-block--animated')
 
-  let currentStyle = getStyle()
+  const updateBlock = () => {
+    motionClasses.value = null
+    isCurrentDiamond.value = defineIsDiamond()
+    currentStyleVars.value = getStyleVars()
+    
+    setTimeout(() => {
+      motionClasses.value = 'falling-block--animated'
+    }, 250)
+  }
 
   const checkFalling = (event) => {
     if (event.animationName.includes('falling')) {
-      console.log('BLOCK IS FALLEN')
+      changeScoreOnFall(isCurrentDiamond.value)
+      updateBlock()
     }
   }
 
-  let isCurrentDiamond = defineIsDiamond()
-  
-  // return {
-  //   '--left-offset': randomX + '%',
-  //   '--animation-duration': animationDuration + 's',
-  //   '--animation-direction': animationDirection,
-  //   '--block-sizing': blockSizing
-  // }
+  const checkClicking = () => {
+    changeScoreOnClick(isCurrentDiamond.value)
+    motionClasses.value += ' falling-block--looted'
+
+    setTimeout(() => {
+      updateBlock()
+    }, 500)
+  }
 </script>
 
 <template>
   <div
-    :style="currentStyle"
-    class="falling-block
-      falling-block--offset
-      falling-block--animated"
+    :class="motionClasses"
+    class="falling-block falling-block--offset"
+    :style="currentStyleVars"
       
-    @pointerdown="changeScoreOnClick(isCurrentDiamond)"
+    @pointerdown="checkClicking"
     @animationiteration="checkFalling">
 
     <DiamondIcon v-if="isCurrentDiamond" />
@@ -45,6 +58,7 @@
     filter: drop-shadow(0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.4));
 
     scale: var(--block-sizing);
+    bottom: 110%;
   }
 
   .falling-block:active {
@@ -60,7 +74,7 @@
 
     animation: 
       spinning calc(var(--animation-duration) * 0.3) linear infinite var(--animation-direction), 
-      falling var(--animation-duration) cubic-bezier(0.25, 0.1, 0.25, 1) infinite forwards;
+      falling var(--animation-duration) cubic-bezier(0.25, 0.1, 0.25, 1) var(--animation-delay) infinite forwards;
   }
 
   .falling-block--offset {
@@ -82,11 +96,7 @@
   }
 
   @keyframes falling {
-    0% {
-      bottom: 100%;
-    }
-
-    100% {
+    to {
       bottom: -25%;
     }
   }
