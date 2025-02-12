@@ -1,32 +1,27 @@
+<script setup>
+  import { Menu } from '@pages/menu'
+</script>
+
 <template>
-  <nav>
-    <RouterLink to="/menu">Go to MENU</RouterLink>
-    <RouterLink to="/game">Go to GAME</RouterLink>
+  <nav purpose="DEBUG">
+    <RouterLink to="/">MENU</RouterLink>
+    <RouterLink to="/game">GAME</RouterLink>
   </nav>
 
   <main>
-    <!-- <Transition name="fading" mode="out-in"> -->
-      <RouterView />
-    <!-- </Transition> -->
+    <Menu />
+
+    <RouterView v-slot="{ Component }">
+      <Transition name="fading" mode="out-in">
+        <Component :is="Component" />
+      </Transition>
+    </RouterView>
   </main>
 </template>
 
 <style>
-  main {
-    background: lightblue;
-  }
-
-  .fading-enter-active,
-  .fading-leave-active {
-    transition: opacity 1s ease;
-  }
-
-  .fading-enter-from,
-  .fading-leave-to {
-    opacity: 1;
-  }
-
   nav {
+    right: 0;
     z-index: 1;
     position: absolute;
     padding: 1rem;

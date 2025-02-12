@@ -79,14 +79,4 @@
     padding: 0.25rem 0.5rem;
     font-size: 0.75rem;
   }
-
-  .fading-enter-active,
-  .fading-leave-active {
-    transition: opacity 0.5s ease;
-  }
-
-  .fading-enter-from,
-  .fading-leave-to {
-    opacity: 0;
-  }
 </style>

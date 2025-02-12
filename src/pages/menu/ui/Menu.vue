@@ -5,37 +5,29 @@
 
 <template>
   <div class="local-root screen">
-    <h1>Заголовок игры</h1>
-
     <div class="menu">
       <div class="menu__btns-wrapper">
-        <RouterLink to="/menu/top">
-          <Button @click="console.log('top is clicked!')">
+        <RouterLink to="/top">
+          <Button>
             <span>TOP</span>
             <TrophyIcon />
           </Button>
         </RouterLink>
 
-        <!-- дропдаун - наводишься или нажимаешь на кнопку,
-        сразу выбираешь сложность -->
-        <RouterLink to="/game">
-          <Button @click="console.log('play is clicked!')">
+        <RouterLink to="/difficulty">
+          <Button>
             <span>PLAY</span>
             <PlayerIcon />
           </Button>
         </RouterLink>
       </div>
     </div>
-
-    <!-- ПЕРЕХОД НУЖНО ДЕЛАТЬ ПО-ДРУГОМУ! БЫЛ WARNING -->
-    <!-- <Transition name="fading" mode="out-in"> -->
-      <RouterView />
-    <!-- </Transition> -->
   </div>
 </template>
 
 <style scoped>
   .local-root {
+    position: absolute;
     background: lightslategray;
   }
 

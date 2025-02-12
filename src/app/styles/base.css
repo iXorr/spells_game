@@ -56,3 +56,13 @@ svg {
   width: 1.5rem;
   height: 1.5rem;
 }
+
+.fading-enter-active,
+.fading-leave-active {
+  transition: opacity .25s ease;
+}
+
+.fading-enter-from,
+.fading-leave-to {
+  opacity: 0;
+}

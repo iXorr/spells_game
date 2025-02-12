@@ -1,9 +1,9 @@
-import { 
-    collectedDiamonds, 
-    skippedDiamonds
-} from './store/items'
+import { chosenDiamondIcon, chosenDifficulty } from './store/settings'
+import { collectedDiamonds, skippedDiamonds} from './store/items'
 
-export { 
+export {
+    chosenDiamondIcon,
+    chosenDifficulty,
     collectedDiamonds, 
     skippedDiamonds
 }

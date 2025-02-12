@@ -1,5 +1,6 @@
 <script setup>
-  import { DiamondIcon, BombIcon } from '@shared/icons'
+  import { chosenDiamondIcon } from '@entities/gameScore'
+  import { DiamondIcon, PenisIcon, BombIcon } from '@shared/icons'
   import { createLifeCycle } from '../model/createLifeCycle'
 
   const { 
@@ -20,7 +21,11 @@
     @pointerdown="checkClicking"
     @animationiteration="checkFalling">
 
-    <DiamondIcon v-if="isCurrentDiamond" />
+    <template v-if="isCurrentDiamond">
+      <DiamondIcon v-if="chosenDiamondIcon == 'default'" />
+      <PenisIcon v-else />
+    </template>
+
     <BombIcon v-else />
   </div>
 </template>

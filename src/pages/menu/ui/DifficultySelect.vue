@@ -1,12 +1,9 @@
-<template>
-  <p>Difficulty!</p>
-</template>
+<script setup>
+  import { Modal } from '@shared/ui'
+</script>
 
-<style scoped>
-  p {
-    z-index: 10;
-    position: absolute;
-    background: red;
-    margin: 10px;
-  }
-</style>
+<template>
+  <div class="local-root">
+    <Modal />
+  </div>
+</template>
