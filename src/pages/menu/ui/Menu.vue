@@ -16,6 +16,8 @@
           </Button>
         </RouterLink>
 
+        <!-- дропдаун - наводишься или нажимаешь на кнопку,
+        сразу выбираешь сложность -->
         <RouterLink to="/game">
           <Button @click="console.log('play is clicked!')">
             <span>PLAY</span>
@@ -25,6 +27,7 @@
       </div>
     </div>
 
+    <!-- ПЕРЕХОД НУЖНО ДЕЛАТЬ ПО-ДРУГОМУ! БЫЛ WARNING -->
     <!-- <Transition name="fading" mode="out-in"> -->
       <RouterView />
     <!-- </Transition> -->

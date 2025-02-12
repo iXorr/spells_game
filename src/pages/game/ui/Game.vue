@@ -2,7 +2,7 @@
   import { collectedDiamonds, skippedDiamonds } from '@entities/gameScore'
   import { FallingBlock } from '@entities/fallingBlock'
   import { watchingLose } from '../model/watchingLose';
-  import { isRoundActive } from '../store/roundActivity'
+  import { isRoundActive, isPaused } from '../store/roundActivity'
   
   watchingLose()
 </script>
@@ -14,6 +14,11 @@
 
       <div class="btns">
         <button 
+          @click="isPaused = !isPaused">
+          {{ !isPaused ? 'Pause' : 'Continue' }}
+        </button>
+
+        <button 
           @click="isRoundActive = !isRoundActive">
           {{ isRoundActive ? 'Stop' : 'Start' }}
         </button>
@@ -21,7 +26,9 @@
     </div>
 
     <Transition name="fading">
-      <div v-if="isRoundActive" class="falling-block--container">
+      <div 
+        v-if="isRoundActive"
+        :class="isPaused ? 'game--paused' : null">
 
         <FallingBlock
           v-for="i in 10"
@@ -32,6 +39,11 @@
 </template>
 
 <style scoped>
+  .game--paused > * {
+    pointer-events: none;
+    animation-play-state: paused;
+  }
+
   .local-root {
     position: relative;
     overflow: hidden;
@@ -56,7 +68,11 @@
   }
 
   .btns {
-    margin-top: 0.5rem;
+    margin-top: .5rem;
+  }
+
+  .btns > *:first-child {
+    margin-right: .5rem;
   }
 
   button {
