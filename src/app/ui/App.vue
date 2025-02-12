@@ -8,9 +8,7 @@
     <RouterLink to="/game">GAME</RouterLink>
   </nav>
 
-  <main>
-    <Menu />
-
+  <main class="screen">
     <RouterView v-slot="{ Component }">
       <Transition name="fading" mode="out-in">
         <Component :is="Component" />
@@ -20,6 +18,10 @@
 </template>
 
 <style>
+  main {
+    background: lightslategray;
+  }
+
   nav {
     right: 0;
     z-index: 1;

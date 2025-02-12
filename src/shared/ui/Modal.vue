@@ -7,9 +7,11 @@
     <div class="exit">
       <RouterLink to="/">
         <Button>
-          <span>EXIT</span>
+          <span>X</span>
         </Button>
       </RouterLink>
+
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -17,9 +19,8 @@
 <style scoped>
   .modal {
     position: absolute;
-
-    width: 100%;
-    height: 100%;
+    width: 100dvw;
+    height: 100dvh;
     background: rgba(0, 0, 0, 0.35);
   }
 </style>

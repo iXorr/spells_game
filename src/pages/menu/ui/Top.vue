@@ -4,7 +4,9 @@
 
 <template>
   <div class="local-root">
-    <Modal />
+    <Modal>
+      <p>TOP</p>
+    </Modal>
   </div>
 </template>
 

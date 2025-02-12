@@ -7,14 +7,14 @@
   <div class="local-root screen">
     <div class="menu">
       <div class="menu__btns-wrapper">
-        <RouterLink to="/top">
+        <RouterLink to="/menu/top">
           <Button>
             <span>TOP</span>
             <TrophyIcon />
           </Button>
         </RouterLink>
 
-        <RouterLink to="/difficulty">
+        <RouterLink to="/menu/settings">
           <Button>
             <span>PLAY</span>
             <PlayerIcon />
@@ -22,6 +22,12 @@
         </RouterLink>
       </div>
     </div>
+
+    <RouterView v-slot="{ Component }">
+      <Transition name="fading" mode="out-in">
+        <Component :is="Component" />
+      </Transition>
+    </RouterView>
   </div>
 </template>
 
@@ -49,5 +55,13 @@
     padding: 1rem;
     border-radius: 0.75rem;
     box-shadow: 0 0 0.25rem black;
+  }
+
+  .menu__btns-wrapper > *:first-child {
+    margin-right: 1rem;
+  }
+
+  .menu__btns-wrapper svg {
+    margin-left: .5rem;
   }
 </style>

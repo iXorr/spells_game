@@ -1,5 +1,6 @@
 import Menu from './ui/Menu.vue'
-import DifficultySelect from './ui/DifficultySelect.vue'
+import Settings from './ui/Settings.vue'
 import Top from './ui/Top.vue'
+import Auth from './ui/Auth.vue'
 
-export { Menu, DifficultySelect, Top }
+export { Menu, Settings, Top, Auth }

@@ -27,12 +27,4 @@
     transform: translateY(var(--tiny-indent));
     box-shadow: none;
   }
-
-  .button:first-child {
-    margin-right: var(--large-indent);
-  }
-
-  .button > *:first-child {
-    margin-right: var(--small-indent);
-  }
 </style>
