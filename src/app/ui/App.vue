@@ -1,19 +1,15 @@
 <script setup>
-  import { Menu } from '@pages/menu'
+  import { FadingRouterView } from '@shared/ui';
 </script>
 
 <template>
-  <nav purpose="DEBUG">
+  <!-- <nav purpose="DEBUG">
     <RouterLink to="/">MENU</RouterLink>
     <RouterLink to="/game">GAME</RouterLink>
-  </nav>
+  </nav> -->
 
   <main class="screen">
-    <RouterView v-slot="{ Component }">
-      <Transition name="fading" mode="out-in">
-        <Component :is="Component" />
-      </Transition>
-    </RouterView>
+    <FadingRouterView />
   </main>
 </template>
 

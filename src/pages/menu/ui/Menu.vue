@@ -1,5 +1,5 @@
 <script setup>
-  import { Button } from '@shared/ui'
+  import { Button, FadingRouterView } from '@shared/ui'
   import { TrophyIcon, PlayerIcon } from '@shared/icons'
 </script>
 
@@ -23,11 +23,7 @@
       </div>
     </div>
 
-    <RouterView v-slot="{ Component }">
-      <Transition name="fading" mode="out-in">
-        <Component :is="Component" />
-      </Transition>
-    </RouterView>
+    <FadingRouterView />
   </div>
 </template>
 

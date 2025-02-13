@@ -1,19 +1,11 @@
 <script setup>
-  import { Modal } from '@shared/ui'
+  import { MenuModal } from '@shared/ui'
 </script>
 
 <template>
   <div class="local-root">
-    <Modal>
+    <MenuModal>
       <p>TOP</p>
-    </Modal>
+    </MenuModal>
   </div>
 </template>
-
-<style scoped>
-  a {
-    position: absolute;
-    background: red;
-    z-index: 1;
-  }
-</style>

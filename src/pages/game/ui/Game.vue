@@ -4,8 +4,9 @@
     skippedDiamonds, 
     isRoundActive, 
     isPaused 
-  } from '@entities/gameScore'
+  } from '@entities/gameStates'
     
+  import { FadingRouterView } from '@shared/ui'
   import { FallingBlock } from '@entities/fallingBlock'
   import { watchingLose } from '../model/watchingLose'
   import Interactive from './Interactive.vue'
@@ -24,7 +25,7 @@
       </button>
     </div>
 
-    <Interactive />
+    <!-- <Interactive /> -->
 
     <Transition name="fading">
       <div 
@@ -37,11 +38,7 @@
       </div>
     </Transition>
 
-    <RouterView v-slot="{ Component }">
-      <Transition name="fading" mode="out-in">
-        <Component :is="Component" />
-      </Transition>
-    </RouterView>
+    <FadingRouterView />
   </div>
 </template>
 

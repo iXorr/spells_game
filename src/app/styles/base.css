@@ -42,6 +42,12 @@
   height: 100dvh;
 }
 
+.blackout {
+  background: rgba(0, 0, 0, 0.35);
+  position: absolute;
+  top: 0;
+}
+
 button {
   -webkit-tap-highlight-color: transparent;
 }

@@ -1,6 +1,6 @@
 import { watchEffect } from "vue"
 import { useRouter } from "vue-router"
-import { skippedDiamonds } from '@entities/gameScore'
+import { skippedDiamonds } from '@entities/gameStates'
 
 export function watchingLose() {
   const router = useRouter()

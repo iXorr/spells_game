@@ -1,6 +1,5 @@
 import Menu from './ui/Menu.vue'
 import Settings from './ui/Settings.vue'
 import Top from './ui/Top.vue'
-import Auth from './ui/Auth.vue'
 
-export { Menu, Settings, Top, Auth }
+export { Menu, Settings, Top }

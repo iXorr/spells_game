@@ -1,18 +1,23 @@
 import { chosenDiamondIcon, chosenDifficulty } from './store/settings'
 import { collectedDiamonds, skippedDiamonds} from './store/items'
-import { isRoundActive, isPaused } from './store/gameStatus'
+import { isRoundActive, isPaused, isWarnVisible } from './store/gameStatus'
 
 import { 
     startGame, 
     stopGame, 
     togglePause,
     pauseGame,
-    resumeGame
+    resumeGame,
+    resetAll,
+    resetGameScore,
+    resetGameStatus,
+    resetGameSettings
 } from './model/resets'
 
 export {
     isRoundActive,
     isPaused,
+    isWarnVisible,
     chosenDiamondIcon,
     chosenDifficulty,
     collectedDiamonds, 
@@ -21,5 +26,9 @@ export {
     startGame,
     togglePause,
     pauseGame,
-    resumeGame
+    resumeGame,
+    resetAll,
+    resetGameScore,
+    resetGameStatus,
+    resetGameSettings
 }

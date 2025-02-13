@@ -1,11 +1,18 @@
 <template>
   <p>RESULTS</p>
 
-  <!-- добавить возможность сохранить или не сохранять результаты игры
-  и очищать всё -->
+  <button>Отправить результаты</button> <br><br>
+
+  <RouterLink to="/">
+    <button>GO NAHYU</button>
+  </RouterLink>
 </template>
 
 <style scoped>
+  * {
+    font-size: 1rem;
+  }
+
   p {
     position: absolute;
     z-index: 1;

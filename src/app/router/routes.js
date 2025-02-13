@@ -1,10 +1,16 @@
-import { Menu, Settings, Top, Auth } from '@pages/menu';
-import { Game, Results } from '@pages/game';
+import { Auth } from '@pages/auth'
+import { Menu, Settings, Top } from '@pages/menu';
+import { Game, Results, Interactive } from '@pages/game';
 
 export const routes = [
   {
     path: '/',
     redirect: '/menu'
+  },
+
+  {
+    path: '/auth',
+    component: Auth
   },
 
   {
@@ -20,13 +26,8 @@ export const routes = [
     path: '/game',
     component: Game,
     children: [
+      { path: '', component: Interactive },
       { path: 'results', component: Results }
     ]
   },
-  
-  {
-    path: '/auth',
-    name: 'Auth',
-    component: Auth
-  }
 ]

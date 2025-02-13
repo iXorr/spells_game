@@ -1,5 +1,5 @@
 <script setup>
-  import { chosenDiamondIcon } from '@entities/gameScore'
+  import { chosenDiamondIcon } from '@entities/gameStates'
   import { DiamondIcon, PenisIcon, BombIcon } from '@shared/icons'
   import { createLifeCycle } from '../model/createLifeCycle'
 
@@ -22,8 +22,8 @@
     @animationiteration="checkFalling">
 
     <template v-if="isCurrentDiamond">
-      <DiamondIcon v-if="chosenDiamondIcon == 'default'" />
-      <PenisIcon v-else />
+      <PenisIcon v-if="chosenDiamondIcon === 'penis'" />
+      <DiamondIcon v-else />
     </template>
 
     <BombIcon v-else />

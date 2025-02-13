@@ -6,6 +6,7 @@ import PenisIcon from './PenisIcon.vue'
 import PauseIcon from './PauseIcon.vue'
 import ResumeIcon from './ResumeIcon.vue'
 import ExitIcon from './ExitIcon.vue'
+import CrossIcon from './CrossIcon.vue'
 
 export { 
   PlayerIcon, 
@@ -15,5 +16,6 @@ export {
   PenisIcon, 
   PauseIcon,
   ResumeIcon,
-  ExitIcon
+  ExitIcon,
+  CrossIcon
 }

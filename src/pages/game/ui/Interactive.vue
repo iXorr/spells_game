@@ -1,27 +1,27 @@
 <script setup>
   import { PauseIcon, ResumeIcon, ExitIcon } from '@shared/icons'
-  import { isPaused, togglePause } from '@entities/gameScore'
-
+  import { isPaused, togglePause, isWarnVisible } from '@entities/gameStates'
   import Warn from './Warn.vue'
 
-  import { ref } from 'vue'
-  const isWarnShowed = ref(false)
+  import { bindListeners, displayWarn } from '../model/keysHandler'
+
+  bindListeners()
 </script>
 
 <template>
   <div class="btns">
-    <button @pointerdown="isWarnShowed = true">
+    <button @pointerdown="displayWarn">
       <ExitIcon />
     </button>
-
-    <Transition name="fading">
-      <Warn v-if="isWarnShowed" />
-    </Transition>
 
     <button @pointerdown="togglePause">
       <PauseIcon v-if="!isPaused" />
       <ResumeIcon v-else />
     </button>
+
+    <Transition name="fading">
+      <Warn v-if="isWarnVisible" />
+    </Transition>
   </div>
 </template>
 
