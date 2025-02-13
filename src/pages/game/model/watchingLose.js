@@ -1,13 +1,13 @@
 import { watchEffect } from "vue"
-import { skippedDiamonds, collectedDiamonds } from '@entities/gameScore'
-import { isRoundActive } from '../store/roundActivity'
+import { useRouter } from "vue-router"
+import { skippedDiamonds } from '@entities/gameScore'
 
 export function watchingLose() {
+  const router = useRouter()
+
   return watchEffect(() => {
     if (skippedDiamonds.value >= 3) {
-      isRoundActive.value = false
-      skippedDiamonds.value = 0
-      collectedDiamonds.value = 0
+      router.push('/game/results')
     }
   })
 }

@@ -1,52 +1,37 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import { Menu, Settings, Top, Auth } from '@pages/menu'
-import { Game } from '@pages/game'
-
-const routes = [
-  {
-    path: '/',
-    redirect: '/menu'
-  },
-
-  {
-    path: '/menu',
-    component: Menu,
-    children: [
-      { path: 'top', component: Top },
-      { path: 'settings', component: Settings },
-    ]
-  },
-
-  {
-    path: '/game',
-    component: Game
-  },
-
-  {
-    path: '/auth',
-    component: Auth
-  }
-]
+import { createRouter, createWebHistory } from 'vue-router';
+import { startGame, stopGame, pauseGame } from '@entities/gameScore'
+import { routes } from './routes';
+import { isAuth } from './auth';
 
 const router = createRouter({
   history: createWebHistory(),
   routes
-})
-
-// вынести в отдельный модуль auth
-// + всё делала нейронка
-router.beforeEach((to, from, next) => {
-  const isAuthRequired = !['/auth', '/'].includes(to.path);
-
-  if (isAuthRequired && !isAuthenticated()) {
-    next('/auth');
-  } else {
-    next();
-  }
 });
 
-function isAuthenticated() {
-  return true;
-}
+router.beforeEach((to, from, next) => {
+  const isAuthRequired = !['/auth', '/'].includes(to.path)
 
-export default router
+  if (isAuthRequired && !isAuth()) {
+    next('/auth')
+    return
+  }
+
+  if (to.path === '/game') {
+    startGame()
+  }
+
+  if (from.path === '/game') {
+    pauseGame()
+
+    if (true) {
+      stopGame()
+      next()
+    } else {
+      next(false)
+    }
+  } else {
+    next()
+  }
+})
+
+export default router;

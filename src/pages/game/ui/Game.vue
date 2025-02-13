@@ -1,8 +1,14 @@
 <script setup>
-  import { collectedDiamonds, skippedDiamonds } from '@entities/gameScore'
+  import { 
+    collectedDiamonds, 
+    skippedDiamonds, 
+    isRoundActive, 
+    isPaused 
+  } from '@entities/gameScore'
+    
   import { FallingBlock } from '@entities/fallingBlock'
-  import { watchingLose } from '../model/watchingLose';
-  import { isRoundActive, isPaused } from '../store/roundActivity'
+  import { watchingLose } from '../model/watchingLose'
+  import Interactive from './Interactive.vue'
   
   watchingLose()
 </script>
@@ -12,18 +18,13 @@
     <div class="panel">
       <p>{{ collectedDiamonds }} : {{ skippedDiamonds }}</p>
 
-      <div class="btns">
-        <button 
-          @click="isPaused = !isPaused">
-          {{ !isPaused ? 'Pause' : 'Continue' }}
-        </button>
-
-        <button 
-          @click="isRoundActive = !isRoundActive">
-          {{ isRoundActive ? 'Stop' : 'Start' }}
-        </button>
-      </div>
+      <button 
+        @click="isRoundActive = !isRoundActive">
+        {{ isRoundActive ? 'Stop' : 'Start' }}
+      </button>
     </div>
+
+    <Interactive />
 
     <Transition name="fading">
       <div 
@@ -35,21 +36,27 @@
           :key="i" />
       </div>
     </Transition>
+
+    <RouterView v-slot="{ Component }">
+      <Transition name="fading" mode="out-in">
+        <Component :is="Component" />
+      </Transition>
+    </RouterView>
   </div>
 </template>
 
 <style scoped>
-  .game--paused > * {
-    pointer-events: none;
-    animation-play-state: paused;
-  }
-
   .local-root {
     position: relative;
     overflow: hidden;
 
     background: #006d6d;
     cursor: grab;
+  }
+
+  .game--paused > * {
+    pointer-events: none;
+    animation-play-state: paused;
   }
 
   .panel {
@@ -65,18 +72,5 @@
     padding: 1rem;
     background: thistle;
     border-radius: 1rem;
-  }
-
-  .btns {
-    margin-top: .5rem;
-  }
-
-  .btns > *:first-child {
-    margin-right: .5rem;
-  }
-
-  button {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
   }
 </style>
