@@ -9,11 +9,6 @@ export const routes = [
   },
 
   {
-    path: '/auth',
-    component: Auth
-  },
-
-  {
     path: '/menu',
     component: Menu,
     children: [
@@ -30,4 +25,9 @@ export const routes = [
       { path: 'results', component: Results }
     ]
   },
+
+  {
+    path: '/auth',
+    component: Auth
+  }
 ]

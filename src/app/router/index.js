@@ -1,51 +1,31 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { routes } from './routes';
 
-import { resetGameStatus } from '@entities/gameStates'
-
 // переместить auth.js и всё вместе с ним в pages/auth
 import { isAuth } from './auth';
 
-import { 
-  startGame, 
-  stopGame, 
-  pauseGame,
-  chosenDifficulty
-} from '@entities/gameStates'
+import { startGame, stopGame, chosenDifficulty, resetAll } from '@entities/gameStates'
 
 const router = createRouter({
   history: createWebHistory(),
   routes
 });
 
-router.beforeEach((to, from, next) => {
-  // const isAuthRequired = !['/auth', '/'].includes(to.path)
+router.beforeEach((to, from) => {
+  if (!isAuth.value && !to.path.includes('/auth')) {
+    return { path: '/auth' }
+  }
 
-  // if (!isAuth.value) {
-  //   next('/auth')
-  //   return
-  // }
+  if (isAuth.value && to.path.includes('/auth')) {
+    return { path: '/' }
+  }
 
   if (to.path.includes('/game')) {
     if (chosenDifficulty.value == null) {
-      next('/')
-      return
+      return { path: '/' }
     } else {
       startGame()
     }
-  }
-
-  // ???
-  if (from.path.includes('/game')) {
-    resetGameStatus()
-
-    if (true) {
-      stopGame()
-      next()
-      return
-    }
-  } else {
-    next()
   }
 })
 

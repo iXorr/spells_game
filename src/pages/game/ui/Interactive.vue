@@ -1,6 +1,6 @@
 <script setup>
-  import { PauseIcon, ResumeIcon, ExitIcon } from '@shared/icons'
-  import { isPaused, togglePause, isWarnVisible } from '@entities/gameStates'
+  import { ExitIcon } from '@shared/icons'
+  import { isWarnVisible } from '@entities/gameStates'
   import Warn from './Warn.vue'
 
   import { bindListeners, displayWarn } from '../model/keysHandler'
@@ -9,14 +9,9 @@
 </script>
 
 <template>
-  <div class="btns">
+  <div class="local-root screen">
     <button @pointerdown="displayWarn">
       <ExitIcon />
-    </button>
-
-    <button @pointerdown="togglePause">
-      <PauseIcon v-if="!isPaused" />
-      <ResumeIcon v-else />
     </button>
 
     <Transition name="fading">
@@ -26,12 +21,16 @@
 </template>
 
 <style scoped>
-  .btns {
+  .local-root {
     position: absolute;
     z-index: 1;
   }
 
   button {
+    position: inherit;
+    top: 0;
+    left: 0;
+    
     border: none;
     background: transparent;
     border-radius: 100%;

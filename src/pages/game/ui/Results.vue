@@ -1,20 +1,24 @@
+<script setup>
+  import { useRouter } from 'vue-router'
+  import { resetAll } from '@entities/gameStates'
+
+  const router = useRouter()
+
+  function resetAndReturn() {
+    resetAll()
+    router.push('/')
+  }
+</script>
+
 <template>
-  <p>RESULTS</p>
+  <h1>RESULTS</h1>
 
-  <button>Отправить результаты</button> <br><br>
-
-  <RouterLink to="/">
-    <button>GO NAHYU</button>
-  </RouterLink>
+  <button>Отправить результаты</button>
+  <button @pointerdown="resetAndReturn">GO back</button>
 </template>
 
 <style scoped>
   * {
     font-size: 1rem;
-  }
-
-  p {
-    position: absolute;
-    z-index: 1;
   }
 </style>

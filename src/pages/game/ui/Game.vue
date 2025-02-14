@@ -1,32 +1,14 @@
 <script setup>
-  import { 
-    collectedDiamonds, 
-    skippedDiamonds, 
-    isRoundActive, 
-    isPaused 
-  } from '@entities/gameStates'
-    
   import { FadingRouterView } from '@shared/ui'
   import { FallingBlock } from '@entities/fallingBlock'
+  import { isRoundActive, isPaused } from '@entities/gameStates'
   import { watchingLose } from '../model/watchingLose'
-  import Interactive from './Interactive.vue'
   
   watchingLose()
 </script>
 
 <template>
-  <div class="local-root screen">    
-    <div class="panel">
-      <p>{{ collectedDiamonds }} : {{ skippedDiamonds }}</p>
-
-      <button 
-        @click="isRoundActive = !isRoundActive">
-        {{ isRoundActive ? 'Stop' : 'Start' }}
-      </button>
-    </div>
-
-    <!-- <Interactive /> -->
-
+  <div class="local-root screen">      
     <Transition name="fading">
       <div 
         v-if="isRoundActive"
@@ -54,20 +36,5 @@
   .game--paused > * {
     pointer-events: none;
     animation-play-state: paused;
-  }
-
-  .panel {
-    position: absolute;
-    z-index: 3;
-
-    bottom: 1rem;
-    left: 1rem;
-
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    background: thistle;
-    border-radius: 1rem;
   }
 </style>
