@@ -1,6 +1,6 @@
 import { chosenDiamondIcon, chosenDifficulty } from './store/settings'
-import { collectedDiamonds, skippedDiamonds} from './store/items'
-import { isRoundActive, isPaused, isWarnVisible } from './store/gameStatus'
+import { collectedDiamonds, skippedDiamonds, collectedBarrels } from './store/items'
+import { isGameActive, isPaused, isWarnVisible } from './store/gameStatus'
 
 import { 
     startGame, 
@@ -15,13 +15,14 @@ import {
 } from './model/resets'
 
 export {
-    isRoundActive,
+    isGameActive,
     isPaused,
     isWarnVisible,
     chosenDiamondIcon,
     chosenDifficulty,
     collectedDiamonds, 
     skippedDiamonds,
+    collectedBarrels,
     stopGame,
     startGame,
     togglePause,

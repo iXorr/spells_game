@@ -1,4 +1,4 @@
-import { collectedDiamonds, skippedDiamonds } from '@entities/gameStates'
+import { collectedDiamonds, skippedDiamonds, collectedBarrels } from '@entities/gameStates'
 
 export function changeScoreOnClick(isBlockDiamond) {
   if (isBlockDiamond) {
@@ -9,6 +9,8 @@ export function changeScoreOnClick(isBlockDiamond) {
     } else {
       collectedDiamonds.value = 0
     }
+
+    collectedBarrels.value++
   }
 }
 

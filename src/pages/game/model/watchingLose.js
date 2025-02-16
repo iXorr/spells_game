@@ -1,14 +1,17 @@
 import { watchEffect } from "vue"
 import { useRouter } from "vue-router"
-import { skippedDiamonds, stopGame } from '@entities/gameStates'
+import { collectedBarrels, skippedDiamonds, stopGame } from '@entities/gameStates'
 
 export function watchingLose() {
   const router = useRouter()
 
   return watchEffect(() => {
-    if (skippedDiamonds.value >= 3) {
+    if (skippedDiamonds.value >= 3 || collectedBarrels.value >= 3) {
       stopGame()
-      router.push('/game/results')
+
+      setTimeout(() => {
+        router.push('/game/results')                
+      }, 250);
     }
   })
 }

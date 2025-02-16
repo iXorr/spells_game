@@ -11,10 +11,12 @@
 </script>
 
 <template>
-  <h1>RESULTS</h1>
+  <div class="local-root">
+    <h1>RESULTS</h1>
 
-  <button>Отправить результаты</button>
-  <button @pointerdown="resetAndReturn">GO back</button>
+    <button @pointerdown="resetAndReturn">Отправить результаты</button>
+    <button @pointerdown="resetAndReturn">GO back</button>
+  </div>
 </template>
 
 <style scoped>

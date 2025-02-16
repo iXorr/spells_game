@@ -4,7 +4,7 @@ import { routes } from './routes';
 // переместить auth.js и всё вместе с ним в pages/auth
 import { isAuth } from './auth';
 
-import { startGame, stopGame, chosenDifficulty, resetAll } from '@entities/gameStates'
+import { startGame, chosenDifficulty, resetAll } from '@entities/gameStates'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -24,8 +24,14 @@ router.beforeEach((to, from) => {
     if (chosenDifficulty.value == null) {
       return { path: '/' }
     } else {
-      startGame()
+      if (to.path === '/game') {
+        startGame()
+      }
     }
+  }
+
+  if (from.path.includes('/game') && !to.path.includes('/game')) {
+    resetAll()
   }
 })
 

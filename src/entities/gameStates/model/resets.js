@@ -1,15 +1,16 @@
-import { collectedDiamonds, skippedDiamonds } from '../store/items'
-import { isPaused, isRoundActive, isWarnVisible } from '../store/gameStatus'
+import { collectedDiamonds, skippedDiamonds, collectedBarrels } from '../store/items'
+import { isPaused, isGameActive, isWarnVisible } from '../store/gameStatus'
 import { chosenDiamondIcon, chosenDifficulty } from '../store/settings'
 
 export function resetGameScore() {
   collectedDiamonds.value = 0
+  collectedBarrels.value = 0
   skippedDiamonds.value = 0
 }
 
 export function resetGameStatus() {
   isPaused.value = false
-  isRoundActive.value = false
+  isGameActive.value = false
   isWarnVisible.value = false
 }
 
@@ -25,12 +26,12 @@ export function resetAll() {
 }
  
 export function stopGame() {
-  isRoundActive.value = false
+  isGameActive.value = false
 }
 
 export function startGame() {
   isPaused.value = false
-  isRoundActive.value = true
+  isGameActive.value = true
 }
 
 export function togglePause() {

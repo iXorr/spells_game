@@ -8,14 +8,11 @@
     <MenuModal>
       <form @submit.prevent>
         <h1>ИГРА</h1>
-
-        <p>{{ chosenDifficulty }} - {{ chosenDiamondIcon }}</p>
-
         <div class="form__element">
           <label for="difficulty">Сложность: </label>
 
           <select id="difficulty" v-model="chosenDifficulty">
-            <option value="easy" selected>Easy</option>
+            <option value="easy">Easy</option>
             <option value="normal">Normal</option>
             <option value="hard">Hard</option>
             <option value="impossible">Impossible</option>
@@ -27,7 +24,7 @@
           
           <select id="diamond_icon" v-model="chosenDiamondIcon">
             <option value="default">Default</option>
-            <option value="secret">Secret</option>
+            <option value="penis">Secret</option>
           </select>
         </div>
 

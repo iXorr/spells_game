@@ -1,31 +1,34 @@
 <script setup>
   import { ExitIcon } from '@shared/icons'
   import { isWarnVisible } from '@entities/gameStates'
-  import Warn from './Warn.vue'
-
   import { bindListeners, displayWarn } from '../model/keysHandler'
-
+  
   bindListeners()
 </script>
 
 <template>
-  <div class="local-root screen">
+  <div class="screen">
     <button @pointerdown="displayWarn">
       <ExitIcon />
     </button>
 
     <Transition name="fading">
-      <Warn v-if="isWarnVisible" />
+      <div class="screen blackout" v-if="isWarnVisible">
+        <div class="question">
+          <h1>Вы уверены, что хотите выйти? Прогресс не сохранится</h1>
+          
+          <RouterLink to="/">
+            <button>ДА</button>
+          </RouterLink>
+
+          <button @pointerdown="displayWarn">CLOSE</button>
+        </div>
+      </div>
     </Transition>
   </div>
 </template>
 
 <style scoped>
-  .local-root {
-    position: absolute;
-    z-index: 1;
-  }
-
   button {
     position: inherit;
     top: 0;

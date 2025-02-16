@@ -1,12 +1,10 @@
 <script setup>
-  import { FadingRouterView } from '@shared/ui';
+  import { FadingRouterView } from '@shared/ui'
+  import { collectedDiamonds, skippedDiamonds, collectedBarrels, chosenDifficulty } from '@entities/gameStates'
 </script>
 
 <template>
-  <!-- <nav purpose="DEBUG">
-    <RouterLink to="/">MENU</RouterLink>
-    <RouterLink to="/game">GAME</RouterLink>
-  </nav> -->
+  <p class="info">{{ collectedDiamonds }} : {{ skippedDiamonds }} : {{ collectedBarrels }} : {{ chosenDifficulty }}</p>
 
   <main class="screen">
     <FadingRouterView />
@@ -14,19 +12,14 @@
 </template>
 
 <style>
+  .info {
+    position: absolute;
+    z-index: 10;
+    background: thistle;
+    padding: 1rem;
+  }
+
   main {
     background: lightslategray;
-  }
-
-  nav {
-    right: 0;
-    z-index: 1;
-    position: absolute;
-    padding: 1rem;
-    background: thistle;
-  }
-
-  nav > *:first-child {
-    margin-right: 1rem;
   }
 </style>

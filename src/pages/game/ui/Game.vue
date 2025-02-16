@@ -1,21 +1,24 @@
 <script setup>
   import { FadingRouterView } from '@shared/ui'
   import { FallingBlock } from '@entities/fallingBlock'
-  import { isRoundActive, isPaused } from '@entities/gameStates'
+  import { isGameActive, isPaused } from '@entities/gameStates'
   import { watchingLose } from '../model/watchingLose'
+  import { defineDifficulty } from '../model/defineDifficulty';
   
   watchingLose()
 </script>
 
 <template>
-  <div class="local-root screen">      
+  <div class="local-root screen">
+    <p>{{ currentDifficulty }}</p>
+
     <Transition name="fading">
       <div 
-        v-if="isRoundActive"
+        v-if="isGameActive"
         :class="isPaused ? 'game--paused' : null">
 
         <FallingBlock
-          v-for="i in 10"
+          v-for="i in defineDifficulty()"
           :key="i" />
       </div>
     </Transition>
