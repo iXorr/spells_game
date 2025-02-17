@@ -5,12 +5,12 @@ import { checkRegister } from '../model/validate'
 
 export function tryRegister() {
   if (checkRegister()) {
-    sendLogin()
+    sendToReg()
   }
 }
 
-function sendLogin() {
-  axios.post('http://localhost:3000', {
+function sendToReg() {
+  axios.post('http://localhost:3000/register', {
     'login': login.value,
     'password': password.value 
   })
