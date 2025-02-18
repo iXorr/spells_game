@@ -1,9 +1,10 @@
 import { ref } from 'vue'
 import axios from 'axios'
+import { BACKEND_URL } from '@shared/config'
 
 export async function getRatings() {
   try {
-    const ratings = await axios.get('http://localhost:3000/ratings')
+    const ratings = await axios.get(`${BACKEND_URL}/ratings`)
     return ratings.data
   } catch (err) {
     return null

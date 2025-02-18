@@ -10,7 +10,8 @@
   <div class="local-root">
     <MenuModal>
       <h1>TOP</h1>
-      <pre v-if="currentRatings.length">{{ currentRatings }}</pre>
+      <!-- хреново работает проверка на currentRatings -->
+      <pre v-if="currentRatings">{{ currentRatings }}</pre>
       <pre v-else>Рейтинга нет</pre>
     </MenuModal>
   </div>

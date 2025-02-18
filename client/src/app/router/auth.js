@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import axios from 'axios'
+import { BACKEND_URL } from '@shared/config'
 
 export const isAuth = ref(false)
 
@@ -10,7 +11,7 @@ export async function checkAuth() {
     return
 
   try {
-    const response = await axios.get('http://localhost:3000/checkjwt', {
+    const response = await axios.get(`${BACKEND_URL}/checkjwt`, {
       headers: {
         Authorization: token
       }

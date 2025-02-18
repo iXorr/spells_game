@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { BACKEND_URL } from '@shared/config'
 import { warnMsg, login, password } from '../store/userData'
 import { checkRegister } from '../model/validate'
 
@@ -19,7 +20,7 @@ function writeToken(res) {
 }
 
 function sendToReg() {
-  axios.post('http://localhost:3000/register', {
+  axios.post(`${BACKEND_URL}/register`, {
     'login': login.value,
     'password': password.value 
   })
@@ -32,11 +33,11 @@ function sendToReg() {
 
     if (err.status)
       warnMsg.value = 'Пользователь уже зарегистрирован'
-  })
+  }, { withCredentials: true })
 }
 
 export function tryLogin() {
-  axios.post('http://localhost:3000/login', {
+  axios.post(`${BACKEND_URL}/login`, {
     'login': login.value,
     'password': password.value
   })
@@ -45,9 +46,9 @@ export function tryLogin() {
     writeToken(res)
   })
   .catch(err => {
-    warnMsg.value = 'Произошла ошибка'
+    warnMsg.value = err
 
     if (err.status)
       warnMsg.value = 'Неверные данные'
-  })
+  }, { withCredentials: true })
 }
