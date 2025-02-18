@@ -7,60 +7,63 @@ import jwt from 'jsonwebtoken'
 import express from "express"
 import bodyParser from "body-parser"
 import fs from 'fs/promises'
-import path from 'path'
 
 const app = express()
 const frontend = import.meta.dirname + "\\frontend"
-const usersFile = path.join(import.meta.dirname, 'data', 'users.json')
 
 app.use(cors())
 app.use(express.static(frontend))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// Функция загрузки пользователей из файла
-async function loadUsers() {
+async function loadFile(filePath) {
   try {
-    const data = await fs.readFile(usersFile, 'utf-8')
-    return JSON.parse(data)
+    const receivedData = await fs.readFile(filePath, 'utf-8')
+    return JSON.parse(receivedData)
   } catch (err) {
-    console.error('Ошибка загрузки users.json:', err)
-    return [] // Если файла нет, вернуть пустой массив
+    console.error(`Ошибка загрузки ${filePath}: ` + err.message)
+    return []
   }
 }
 
-// Функция сохранения пользователей в файл
-async function saveUsers() {
+async function saveFile(filePath, dataModule) {
   try {
-    await fs.writeFile(usersFile, JSON.stringify(users, null, 2))
+    await fs.writeFile(filePath, JSON.stringify(dataModule, null, 2))
   } catch (err) {
-    console.error('Ошибка сохранения users.json:', err)
+    console.error(`Ошибка сохранения ${filePath}: ` + err.message)
   }
 }
 
-// Загружаем пользователей из файла
-let users = await loadUsers()
+async function createProxy(dataModuleName) {
+  let dataModule = await loadFile(`data/${dataModuleName}.json`)
 
-// Прокси для автоматического сохранения users.json при изменении массива
-users = new Proxy(users, {
-  get(target, property) {
-    return target[property] // Читаем данные нормально
-  },
-  set(target, property, value) {
-    target[property] = value
-    saveUsers() // Автоматически сохраняем изменения
-    return true
-  },
-  apply(target, thisArg, argumentsList) {
-    const result = target.apply(thisArg, argumentsList)
-    saveUsers()
-    return result
-  }
-})
+  dataModule = new Proxy(dataModule, {
+    get(target, property) {
+      return target[property]
+    },
+  
+    set(target, property, value) {
+      target[property] = value
+      saveFile(`data/${dataModuleName}.json`, dataModule)
+      return true
+    },
+  
+    apply(target, thisArg, argumentsList) {
+      const result = target.apply(thisArg, argumentsList)
+      saveFile(`data/${dataModuleName}.json`, dataModule)
+      return result
+    }
+  })
+
+  return dataModule
+}
+
+let users = await createProxy('users')
+let ratings = await createProxy('ratings')
 
 function getToken(login) {
   return jwt.sign({ login: login }, process.env.JWT_ACCESS_SECRET, {
-    expiresIn: '1m'
+    expiresIn: '1h'
   })
 }
 
@@ -78,8 +81,8 @@ app.post('/register', async (req, res) => {
 
   let hashedPassword = await bcrypt.hash(password, 10)
 
-  users.push({ login: login, password: hashedPassword }) // Добавляем в массив
-  await saveUsers() // Сохраняем в файл
+  users.push({ login: login, password: hashedPassword })
+  await saveFile('data/users.json', users)
   sendToken(res, login)
 })
 
@@ -97,11 +100,36 @@ app.post('/login', async (req, res) => {
   sendToken(res, login)
 })
 
-// app.post('/recordRating', async (req, res) => {
-//   const data = req.body
+app.post('/recordRatings', async (req, res) => {
+  const { collectedDiamonds, chosenDifficulty, userLogin } = req.body
 
-//   console.log(data)
-// })
+  const difficultyLevels = { easy: 1, normal: 2, hard: 3, impossible: 4 };
+
+  let existingRecordIndex = ratings.findIndex(r => r.userLogin === userLogin);
+  let newRecord = { collectedDiamonds, chosenDifficulty, userLogin };
+
+  if (existingRecordIndex !== -1) {
+    let existingRecord = ratings[existingRecordIndex];
+    let existingDifficulty = difficultyLevels[existingRecord.chosenDifficulty];
+    let newDifficulty = difficultyLevels[chosenDifficulty];
+    
+    if (
+      newDifficulty > existingDifficulty ||
+      collectedDiamonds > existingRecord.collectedDiamonds ||
+      (collectedDiamonds === existingRecord.collectedDiamonds && newDifficulty > existingDifficulty)
+    ) {
+      ratings[existingRecordIndex] = newRecord;
+    }
+  } else {
+    ratings.push(newRecord);
+  }
+
+  res.status(200).send('Рейтинг обновлён')
+})
+
+app.get('/ratings', async (req, res) => {
+  res.send(ratings)
+})
 
 app.get('/checkjwt', async (req, res) => {
   const token = req.header('Authorization')

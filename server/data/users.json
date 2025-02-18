@@ -1,14 +1,14 @@
 [
   {
-    "login": "iXorr2",
-    "password": "$2b$10$Xy4Xs40.Ovyu36hEp6e0/u6xG5DhI1jScmbpqCn.tEQJqdQTFdPoK"
-  },
-  {
     "login": "iXorr",
-    "password": "$2b$10$X2n788LhfY3p0jLx5MOVVOdavz3MMpk54U3gvljluWd//soDOFFi2"
+    "password": "$2b$10$hWiASRUYRmgysg.iP0g7jOCEcKLn18vtx0g7MOJJa9Ur6B/yA1tEq"
   },
   {
-    "login": "iXorr123",
-    "password": "$2b$10$5FkuQB/n8Bv9bEGel4TPpu0xGg9GyI1KFVfmeBMpFn3LfhBEq49pO"
+    "login": "iXorr1",
+    "password": "$2b$10$CkTNPOp3Z8jWLGnLa/FvqOembooPi3odCqZkIF0zYi.HjCoE5Jw62"
+  },
+  {
+    "login": "test",
+    "password": "$2b$10$/eYEPGGKWKtI2JziI849Me2J9W6RXJyNAv2so.ExpjLAOMcB3Im1a"
   }
 ]

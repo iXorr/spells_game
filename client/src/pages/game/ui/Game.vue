@@ -10,8 +10,6 @@
 
 <template>
   <div class="local-root screen">
-    <p>{{ currentDifficulty }}</p>
-
     <Transition name="fading">
       <div 
         v-if="isGameActive"
