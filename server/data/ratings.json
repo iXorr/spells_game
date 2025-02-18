@@ -8,5 +8,20 @@
     "collectedDiamonds": 23,
     "chosenDifficulty": "easy",
     "userLogin": "iXorr1"
+  },
+  {
+    "collectedDiamonds": 38,
+    "chosenDifficulty": "easy",
+    "userLogin": "iXorr3"
+  },
+  {
+    "collectedDiamonds": 0,
+    "chosenDifficulty": "easy",
+    "userLogin": "test"
+  },
+  {
+    "collectedDiamonds": 22,
+    "chosenDifficulty": "normal",
+    "userLogin": "cwk1"
   }
 ]

@@ -11,7 +11,11 @@ import fs from 'fs/promises'
 const app = express()
 const frontend = import.meta.dirname + "\\frontend"
 
-app.use(cors())
+app.use(cors({
+  origin: '*',
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
+}))
 app.use(express.static(frontend))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))

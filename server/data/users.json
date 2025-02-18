@@ -10,5 +10,13 @@
   {
     "login": "test",
     "password": "$2b$10$/eYEPGGKWKtI2JziI849Me2J9W6RXJyNAv2so.ExpjLAOMcB3Im1a"
+  },
+  {
+    "login": "iXorr3",
+    "password": "$2b$10$OcF79BmqUNf9XMSXgYZ7lO4pPfu..SnGIHk74y3eyHuSSvSogyjyW"
+  },
+  {
+    "login": "cwk1",
+    "password": "$2b$10$DxRB0/cCw2FpOrmVHP5rqu8aEba4j1sazaw2hVqg/hWudXzK2bqf6"
   }
 ]
