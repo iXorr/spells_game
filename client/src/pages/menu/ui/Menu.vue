@@ -1,10 +1,20 @@
 <script setup>
   import { Button, FadingRouterView } from '@shared/ui'
   import { TrophyIcon, PlayerIcon } from '@shared/icons'
+
+  function logout() {
+    localStorage.clear()
+    window.location.reload()
+  }
 </script>
 
 <template>
   <div class="local-root screen">
+    <div class="greeting">
+      <p>Здравствуй, { имя пользователя }</p>
+      <button @pointerdown="logout">Выйти</button>
+    </div>
+
     <div class="menu">
       <div class="menu__btns-wrapper">
         <RouterLink to="/menu/top">
@@ -28,6 +38,12 @@
 </template>
 
 <style scoped>
+  .greeting {
+    top: 1rem;
+    right: 1rem;
+    position: absolute;
+  }
+
   .local-root {
     position: absolute;
     background: lightslategray;

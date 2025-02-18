@@ -1,4 +1,4 @@
-import { Auth } from '@pages/auth'
+import { Auth, LoginForm, RegisterForm } from '@pages/auth'
 import { Menu, Settings, Top } from '@pages/menu';
 import { Game, Results, Interactive } from '@pages/game';
 
@@ -28,6 +28,15 @@ export const routes = [
 
   {
     path: '/auth',
-    component: Auth
+    redirect: '/auth/login'
+  },
+
+  {
+    path: '/auth',
+    component: Auth,
+    children: [
+      { path: 'login', component: LoginForm },
+      { path: 'register', component: RegisterForm },
+    ]
   }
 ]

@@ -1,6 +1,8 @@
 <script setup>
   import { FadingRouterView } from '@shared/ui'
   
+  import { isAuth } from '../router/auth';
+
   import { 
     collectedDiamonds, 
     skippedDiamonds, 
@@ -15,6 +17,7 @@
     : {{ skippedDiamonds }} 
     : {{ collectedBarrels }} 
     : {{ chosenDifficulty }}
+    : {{ isAuth }}
   </p>
 
   <main class="screen">
