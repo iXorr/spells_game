@@ -1,6 +1,7 @@
 <script setup>
   import { Button, FadingRouterView } from '@shared/ui'
   import { TrophyIcon, PlayerIcon } from '@shared/icons'
+  import { userLogin } from '@entities/gameStates'
 
   function logout() {
     localStorage.clear()
@@ -11,7 +12,7 @@
 <template>
   <div class="local-root screen">
     <div class="greeting">
-      <p>Здравствуй, { имя пользователя }</p>
+      <p>Здравствуй, {{ userLogin }}</p>
       <button @pointerdown="logout">Выйти</button>
     </div>
 

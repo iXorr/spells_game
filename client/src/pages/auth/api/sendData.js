@@ -10,9 +10,10 @@ export function tryRegister() {
 
 function writeToken(res) {
   setTimeout(() => {
-    const token = res.data.token
-    localStorage.setItem('token', token)
+    const { token, login } = res.data
 
+    localStorage.setItem('token', token)
+    localStorage.setItem('login', login)
     window.location.reload()
   }, 1000)
 }
@@ -23,7 +24,7 @@ function sendToReg() {
     'password': password.value 
   })
   .then(res => {
-    warnMsg.value = 'Вы зарегистрировались'
+    warnMsg.value = 'Добро пожаловать'
     writeToken(res)
   })
   .catch(err => {
@@ -40,7 +41,7 @@ export function tryLogin() {
     'password': password.value
   })
   .then(res => {
-    warnMsg.value = 'Добро пожаловать, {имя пользователя}'
+    warnMsg.value = 'С возвращением'
     writeToken(res)
   })
   .catch(err => {

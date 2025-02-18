@@ -1,6 +1,7 @@
 import { chosenDiamondIcon, chosenDifficulty } from './store/settings'
 import { collectedDiamonds, skippedDiamonds, collectedBarrels } from './store/items'
 import { isGameActive, isPaused, isWarnVisible } from './store/gameStatus'
+import { userLogin } from './store/userInfo'
 
 import { 
     startGame, 
@@ -15,6 +16,7 @@ import {
 } from './model/resets'
 
 export {
+    userLogin,
     isGameActive,
     isPaused,
     isWarnVisible,
