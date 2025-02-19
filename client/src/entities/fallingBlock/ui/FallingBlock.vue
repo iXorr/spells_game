@@ -8,7 +8,7 @@
     currentStyleVars, 
     motionClasses, 
     checkFalling, 
-    checkClicking 
+    checkClicking
   } = createLifeCycle()
 </script>
 

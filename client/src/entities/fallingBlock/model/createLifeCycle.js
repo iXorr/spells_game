@@ -5,12 +5,14 @@ import { changeScoreOnClick, changeScoreOnFall } from './scoreActions'
 export function createLifeCycle() {
   const isCurrentDiamond = ref(defineIsDiamond())
   const currentStyleVars = ref(getStyleVars())
+  const isClickable = ref(true)
   const motionClasses = ref('falling-block--animated')
 
   const updateBlock = () => {
     motionClasses.value = null
     isCurrentDiamond.value = defineIsDiamond()
     currentStyleVars.value = getStyleVars()
+    isClickable.value = true
 
     setTimeout(() => {
       motionClasses.value = 'falling-block--animated'
@@ -25,6 +27,11 @@ export function createLifeCycle() {
   }
 
   const checkClicking = () => {
+    if (!isClickable.value)
+      return
+
+    isClickable.value = false
+
     changeScoreOnClick(isCurrentDiamond.value)
     motionClasses.value += ' falling-block--looted'
 
