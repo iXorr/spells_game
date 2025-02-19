@@ -1,5 +1,5 @@
 <script setup>
-  import { warnMsg, warnInfo } from '../store/userData';
+  import { warnMsg, warnInfo } from '../store/userData'
 </script>
 
 <template>

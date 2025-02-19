@@ -18,5 +18,9 @@
   {
     "login": "cwk1",
     "password": "$2b$10$DxRB0/cCw2FpOrmVHP5rqu8aEba4j1sazaw2hVqg/hWudXzK2bqf6"
+  },
+  {
+    "login": "kirill",
+    "password": "$2b$10$iCs4UnqNfoBAvg73yL8LQeJsuyD1vIUOg0qTS/q7alj6dwfx6EOdW"
   }
 ]

@@ -2,7 +2,7 @@ import PlayerIcon from './PlayerIcon.vue'
 import TrophyIcon from './TrophyIcon.vue'
 import DiamondIcon from './DiamondIcon.vue'
 import BombIcon from './BombIcon.vue'
-import PenisIcon from './PenisIcon.vue'
+import SecretIcon from './SecretIcon.vue'
 import PauseIcon from './PauseIcon.vue'
 import ResumeIcon from './ResumeIcon.vue'
 import ExitIcon from './ExitIcon.vue'
@@ -13,7 +13,7 @@ export {
   TrophyIcon, 
   DiamondIcon, 
   BombIcon, 
-  PenisIcon, 
+  SecretIcon, 
   PauseIcon,
   ResumeIcon,
   ExitIcon,

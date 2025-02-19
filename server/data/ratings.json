@@ -1,6 +1,6 @@
 [
   {
-    "collectedDiamonds": 21,
+    "collectedDiamonds": 39,
     "chosenDifficulty": "normal",
     "userLogin": "iXorr"
   },
@@ -23,5 +23,10 @@
     "collectedDiamonds": 22,
     "chosenDifficulty": "normal",
     "userLogin": "cwk1"
+  },
+  {
+    "collectedDiamonds": 33,
+    "chosenDifficulty": "hard",
+    "userLogin": "kirill"
   }
 ]

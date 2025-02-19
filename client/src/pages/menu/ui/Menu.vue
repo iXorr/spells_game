@@ -1,16 +1,18 @@
 <script setup>
+  import { USER_NAME } from '@shared/config'
   import { Button, FadingRouterView } from '@shared/ui'
   import { TrophyIcon, PlayerIcon } from '@shared/icons'
-  import { USER_NAME } from '@shared/config'
-
-  function logout() {
-    localStorage.clear()
-    window.location.reload()
-  }
+  import { PulseClick, animateClick } from '@entities/pulseClick'
+  import { logout } from '../model/logout'
 </script>
 
 <template>
-  <div class="local-root screen">
+  <div 
+    class="local-root screen" 
+    @pointerdown="animateClick">
+
+    <PulseClick />
+
     <div class="greeting">
       <p>Здравствуй, {{ USER_NAME }}</p>
       <button @pointerdown="logout">Выйти</button>

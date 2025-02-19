@@ -1,8 +1,8 @@
 <script setup>
   import { FadingRouterView } from '@shared/ui'
-  import { clearData } from '../router/clearData'
+  import { clearingData } from '../router/clearingData'
 
-  clearData()
+  clearingData()
 </script>
 
 <template>

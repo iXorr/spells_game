@@ -8,7 +8,7 @@ import {
 
 import { useRouter } from 'vue-router'
 
-export function clearData() {
+export function clearingData() {
   const router = useRouter()
 
   return router.beforeEach(() => {

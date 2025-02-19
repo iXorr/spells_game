@@ -1,7 +1,8 @@
 <script setup>
   import { login, password } from '../store/userData'
   import { tryLogin } from '../api/sendData'
-  import Warn from './Warn.vue';
+  
+  import Warn from './Warn.vue'
 </script>
 
 <template>

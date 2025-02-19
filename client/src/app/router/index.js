@@ -1,8 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import { routes } from './routes';
+import { createRouter, createWebHistory } from 'vue-router'
+import { routes } from './routes'
 
 // переместить auth.js и всё вместе с ним в pages/auth
-import { checkAuth, isAuth } from './auth';
+import { checkAuth, isAuth } from './auth'
 
 import { startGame, chosenDifficulty, resetAll } from '@entities/gameStates'
 

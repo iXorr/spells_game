@@ -1,20 +1,6 @@
 <script setup>
-  import { useRouter } from 'vue-router'
-  import { resetAll } from '@entities/gameStates'
-  import { sendResults } from '../api/sendResults'  
-
-  const router = useRouter()
-
-  function resetAndReturn() {
-    resetAll()
-
-    router.push('/')
-  }
-
-  function sendAndReturn() {
-    sendResults()
-    resetAndReturn()
-  }
+  import { useResultsLogic } from '../model/resultsLogic'
+  const { resetAndReturn, sendAndReturn } = useResultsLogic()
 </script>
 
 <template>

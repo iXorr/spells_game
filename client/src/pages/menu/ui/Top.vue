@@ -1,9 +1,9 @@
 <script setup>
   import { MenuModal } from '@shared/ui'
-  import { currentRatings } from '../api/getRatings';
-  import { updateRatings } from '../model/updateRatings'
+  import { currentRatings } from '../store/currentRatings'
+  import { updatingRatings } from '../model/updatingRatings'
 
-  updateRatings()
+  updatingRatings()
 </script>
 
 <template>

@@ -1,7 +1,8 @@
 <script setup>
   import { login, password, confirmPassword} from '../store/userData'
   import { tryRegister } from '../api/sendData'
-  import Warn from './Warn.vue';
+  
+  import Warn from './Warn.vue'
 </script>
 
 <template>
