@@ -1,37 +1,17 @@
 [
   {
-    "collectedDiamonds": 14,
-    "chosenDifficulty": "impossible",
+    "collectedDiamonds": 26,
+    "chosenDifficulty": "normal",
     "userLogin": "iXorr"
   },
   {
-    "collectedDiamonds": 23,
-    "chosenDifficulty": "easy",
+    "collectedDiamonds": 7,
+    "chosenDifficulty": "hard",
     "userLogin": "iXorr1"
   },
   {
-    "collectedDiamonds": 38,
+    "collectedDiamonds": 29,
     "chosenDifficulty": "easy",
-    "userLogin": "iXorr3"
-  },
-  {
-    "collectedDiamonds": 0,
-    "chosenDifficulty": "easy",
-    "userLogin": "test"
-  },
-  {
-    "collectedDiamonds": 22,
-    "chosenDifficulty": "normal",
-    "userLogin": "cwk1"
-  },
-  {
-    "collectedDiamonds": 33,
-    "chosenDifficulty": "hard",
-    "userLogin": "kirill"
-  },
-  {
-    "collectedDiamonds": 8,
-    "chosenDifficulty": "impossible",
-    "userLogin": "dadada"
+    "userLogin": "awdwadawd1"
   }
 ]
