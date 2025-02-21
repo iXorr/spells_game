@@ -22,5 +22,21 @@
   {
     "login": "kirill",
     "password": "$2b$10$iCs4UnqNfoBAvg73yL8LQeJsuyD1vIUOg0qTS/q7alj6dwfx6EOdW"
+  },
+  {
+    "login": "dadada",
+    "password": "$2b$10$ElJe.xvzXUxMGUHlYJjh1.NN.lO0UvNh08wkIzHk9RFEqC4XDhBWu"
+  },
+  {
+    "login": "awdwadawd",
+    "password": "$2b$10$/GwK668182e1nYoHm6gPjO80V66Ttezukilyy/OwEkDAqj.eS.ady"
+  },
+  {
+    "login": "awdwadawd1",
+    "password": "$2b$10$8yHH9Ka6QE9gi.3Q18LPNOxNGIGiDy/kICKn3m8Y./xgIwGiwMgla"
+  },
+  {
+    "login": "hello",
+    "password": "$2b$10$Lik3U5dEn8kpFmlsUqJV..EidHsE1qwBo3//Fex821C2Em9oTx28W"
   }
 ]

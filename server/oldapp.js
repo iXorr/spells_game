@@ -12,13 +12,25 @@ const app = express()
 const frontend = import.meta.dirname + "\\frontend"
 
 app.use(cors({
-  origin: '*',
+  origin: function (origin, callback) {
+    if (!origin || origin !== 'http://192.168.223.7') {
+      callback(new Error('Not allowed by CORS'));
+      console.log('IF')
+    } else {
+      callback(null, true)
+      console.log('ELSE')
+    }
+  },
+
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
 }))
+
 app.use(express.static(frontend))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
+// dataModel.js
 
 async function loadFile(filePath) {
   try {
@@ -65,6 +77,12 @@ async function createProxy(dataModuleName) {
 let users = await createProxy('users')
 let ratings = await createProxy('ratings')
 
+
+
+
+
+// authController.js
+
 function getToken(login) {
   return jwt.sign({ login: login }, process.env.JWT_ACCESS_SECRET, {
     expiresIn: '1h'
@@ -79,7 +97,10 @@ function sendToken(response, login) {
 app.post('/register', async (req, res) => {
   let { login, password } = req.body
 
+  console.log(login, password)
+
   let user = users.find(user => user.login == login)
+  
   if (user)
     return res.status(400).send('Пользователь уже существует')
 
