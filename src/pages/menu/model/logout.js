@@ -1,4 +1,6 @@
 export function logout() {
-  localStorage.clear()
-  window.location.reload()
+  setTimeout(() => {
+    localStorage.clear()
+    window.location.reload()
+  }, 500)
 }

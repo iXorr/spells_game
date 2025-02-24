@@ -1,6 +1,6 @@
 <script setup>
   import { USER_NAME } from '@shared/config'
-  import { Button, FadingRouterView } from '@shared/ui'
+  import { Title, Button, FadingRouterView } from '@shared/ui'
   import { TrophyIcon, PlayerIcon } from '@shared/icons'
   import { PulseClick, animateClick } from '@entities/pulseClick'
   import { logout } from '../model/logout'
@@ -13,23 +13,25 @@
 
     <PulseClick />
 
-    <div class="greeting">
+    <Title />
+
+    <div class="greeting window">
       <p>Здравствуй, {{ USER_NAME }}</p>
-      <button @pointerdown="logout">Выйти</button>
+      <Button @pointerdown="logout">Выйти</Button>
     </div>
 
     <div class="menu">
-      <div class="menu__btns-wrapper">
+      <div class="menu__btns-wrapper window">
         <RouterLink to="/menu/top">
           <Button>
-            <span>TOP</span>
+            <span>ТОП</span>
             <TrophyIcon />
           </Button>
         </RouterLink>
 
         <RouterLink to="/menu/settings">
           <Button>
-            <span>PLAY</span>
+            <span>ИГРА</span>
             <PlayerIcon />
           </Button>
         </RouterLink>
@@ -41,35 +43,55 @@
 </template>
 
 <style scoped>
+  .title {
+    top: 2.5rem;
+    left: 50%;
+    translate: -50% 0;
+  }
+
   .greeting {
+    display: flex;
+    flex-direction: column;
+
+    padding: 1rem;
+
+    font-size: .9rem;
+
+    color: white;
+    font-weight: 600;
+
     top: 1rem;
     right: 1rem;
     position: absolute;
   }
 
+  .greeting > *:first-child {
+    margin-bottom: .5rem;
+  }
+
+  .greeting button {
+    width: fit-content;
+    font-size: .9rem;
+    padding: .35rem .5rem;
+  }
+
   .local-root {
     position: absolute;
-    background: lightslategray;
   }
 
   .menu {
     position: absolute;
     translate: -50% -10%;
-    bottom: 10%;
+    bottom: 1rem;
     left: 50%;
 
     display: flex;
     justify-content: center;
   }
 
-  .menu__btns-wrapper {    
-    display: flex;
-    backdrop-filter: blur(0.5rem);
-    
+  .menu__btns-wrapper {        
     margin: .25rem;
     padding: 1rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 0 0.25rem black;
   }
 
   .menu__btns-wrapper > *:first-child {

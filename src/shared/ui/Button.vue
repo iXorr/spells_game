@@ -5,13 +5,21 @@
 </template>
 
 <style scoped>
+  .button:disabled {
+    color: #000;
+    box-shadow: none;
+    translate: 0 .25rem;
+  }
+
   .button {
+    cursor: auto;
+
     display: flex;
     align-items: center;
+    font-weight: 600;
 
     background: var(--light-color);
-
-    font-weight: 600;
+    
     font-size: var(--paragraph-font-size);
     
     border-radius: var(--normal-indent);
@@ -23,7 +31,7 @@
     transition: var(--fast-transition);
   }
 
-  .button:active {
+  .button:active:not(:disabled) {
     transform: translateY(var(--tiny-indent));
     box-shadow: none;
   }

@@ -1,3 +1,3 @@
 import { ref } from 'vue'
 
-export const currentRatings = ref(null)
+export const currentRatings = ref([])

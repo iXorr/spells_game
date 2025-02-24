@@ -5,29 +5,23 @@
         <span data-text="Falling">Falling</span>
         <span data-text="Blocks">Blocks</span>
       </h1>
-      <span class="top-title">Get me all the</span>
-      <span class="bottom-title">You can find</span>
-      </div>
+    </div>
   </section>
 </template>
 
 <style scoped>
   @import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@300;700;900&display=swap");
 
-  body {
-    font-family: "Exo 2", sans-serif;
-    background: rgb(63, 161, 251);
-    background: linear-gradient(142deg, rgba(63, 161, 251, 1) 0%, rgba(252, 70, 168, 1) 100%);
-  }
-
   .header {
-    max-width: 1200px;
-    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    translate: -50% -100%;
+
+    position: absolute;
     padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - 4rem);
   }
 
   .title-wrapper {
@@ -37,39 +31,33 @@
     transform: skew(0, -10deg);
   }
 
-  .top-title {
-    order: 1;
-    text-align: center;
-    display: block;
-    color: #fff;
-    font-size: clamp(1rem, 4vw, 1.5rem);
-    margin-bottom: 1rem;
-    padding-right: 2rem;
-  }
-
-  .bottom-title {
-    order: 3;
-    text-align: center;
-    display: block;
-    color: #fff;
-    font-size: clamp(1rem, 4vw, 1.5rem);
-    margin-top: 2rem;
-    padding-left: 2rem;
-  }
-
   .sweet-title {
-    order: 2;
-    color: #fde9ff;
+    color: darkolivegreen;
     font-weight: 900;
     text-transform: uppercase;
-    font-size: clamp(3rem, 10vw, 6rem);
+    font-size: 5rem;
     line-height: 0.75em;
     text-align: center;
-    text-shadow: 3px 1px 1px #4af7ff, 2px 2px 1px #165bfb, 4px 2px 1px #4af7ff,
-      3px 3px 1px #165bfb, 5px 3px 1px #4af7ff, 4px 4px 1px #165bfb,
-      6px 4px 1px #4af7ff, 5px 5px 1px #165bfb, 7px 5px 1px #4af7ff,
-      6px 6px 1px #165bfb, 8px 6px 1px #4af7ff, 7px 7px 1px #165bfb,
-      9px 7px 1px #4af7ff;
+    text-shadow: 
+      1px 1px 0px rgb(55, 77, 17),
+      2px 2px 0px rgb(55, 77, 17),
+      3px 3px 0px rgb(55, 77, 17),
+      4px 4px 0px rgb(55, 77, 17),
+      5px 5px 0px rgb(55, 77, 17),
+      6px 6px 0px rgb(55, 77, 17),
+      7px 7px 0px rgb(55, 77, 17),
+      8px 8px 0px rgb(55, 77, 17);
+  }
+
+  .sweet-title span::before {
+    z-index: 1;
+    position: absolute;
+    content: attr(data-text);
+    text-shadow: 
+      2px 2px 1px rgb(35, 57, 0),
+      -1px -1px 1px rgb(35, 57, 0), 
+      -2px 2px 1px rgb(35, 57, 0), 
+      1px -1px 1px rgb(35, 57, 0);
   }
 
   .sweet-title span {
@@ -77,29 +65,28 @@
     position: relative;
   }
 
-  .sweet-title span::before {
-    content: attr(data-text);
-    position: absolute;
-    text-shadow: 2px 2px 1px #e94aa1, -1px -1px 1px #c736f9, -2px 2px 1px #e94aa1, 1px -1px 1px #f736f9;
-    z-index: 1;
-  }
-
   .sweet-title span:nth-child(1) {
     padding-right: 2.25rem;
   }
 
   .sweet-title span:nth-child(2) {
+    padding-top: .25rem;
     padding-left: 2.25rem;
   }
 
-  .disclaimer {
-    width: 100%;
-    height: 2rem;
-    text-align: center;
-    color: #fff;
+  @media (max-width: 1280px) {
+    .sweet-title {
+      font-size: 4rem;
+    }
+
+    .header {
+      translate: -50% -50%;
+    }
   }
 
-  .disclaimer a {
-    color: #fff;
+  @media (max-width: 640px) {
+    .sweet-title {
+      font-size: 2.5rem;
+    }
   }
 </style>

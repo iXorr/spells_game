@@ -1,20 +1,22 @@
 <script setup>
-  import { FadingRouterView } from '@shared/ui'
+  import { FadingRouterView, Button } from '@shared/ui'
   import { clearingData } from '../router/clearingData'
+  import { useRoute } from 'vue-router'
+
+  const route = useRoute()
 
   clearingData()
 </script>
 
 <template>
   <div>
-    <div class="btns">
+    <div class="btns window">
       <RouterLink to="/auth/login">
-        <button>Вход в систему</button>
+        <Button :disabled="route.fullPath.includes('login') ? true : false">Вход</Button>
       </RouterLink>
-
       
       <RouterLink to="/auth/register">
-        <button>Регистрация</button>
+        <Button :disabled="!route.fullPath.includes('login') ? true : false">Регистрация</Button>
       </RouterLink>
     </div>
 
@@ -24,15 +26,16 @@
 
 <style scoped>
   .btns {
+    padding: 1rem;
+
     position: absolute;
-    top: 5rem;
+    top: 1.5rem;
+    left: 50%;
+    translate: -50% 0;
     display: flex;
-    flex-direction: column;
   }
 
-  button {
-    font-size: .75rem;
-    padding: .25rem;
-    margin: .25rem;
+  .btns > *:first-child {
+    margin-right: .5rem;
   }
 </style>

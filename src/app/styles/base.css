@@ -30,11 +30,24 @@
   user-select: none;
   -webkit-user-select: none;
   -webkit-user-drag: none;
+  outline: none;
 }
 
 #app {
   margin: 0 auto;
   text-align: center;
+}
+
+.window {
+  display: flex;
+  background: rgba(50, 50, 50, 0.5);
+  /* backdrop-filter: blur(0.5rem); */
+  border-radius: 0.75rem;
+  box-shadow: 0 0 .25rem #000;
+}
+
+a {
+  cursor: auto;
 }
 
 .screen {
