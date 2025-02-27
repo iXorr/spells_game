@@ -3,8 +3,10 @@
   import { FallingBlock } from '@entities/fallingBlock'
   import { isGameActive, isPaused } from '@entities/gameStates'
   import { watchingLose } from '../model/watchingLose'
-  import { defineDifficulty } from '../model/defineDifficulty';
-  
+  import { defineDifficulty } from '../model/defineDifficulty'
+
+  import { collectedDiamonds, collectedBarrels, skippedDiamonds } from "@entities/gameStates"
+
   watchingLose()
 </script>
 
@@ -14,6 +16,25 @@
       <div
         v-if="isGameActive"
         :class="isPaused ? 'game--paused' : null">
+
+        <p class="info">
+          <table>
+            <tr>
+              <td>Счёт</td>
+              <td>{{ collectedDiamonds }}</td>
+            </tr>
+
+            <tr>
+              <td>Собрано бочек</td>
+              <td>{{ collectedBarrels }} из <span style="color: red">3</span></td>
+            </tr>
+
+            <tr>
+              <td>Пропущено алмазов</td>
+              <td>{{ skippedDiamonds }} из <span style="color: red">3</span></td>
+            </tr>
+          </table>
+        </p>
 
         <FallingBlock
           v-for="i in defineDifficulty()"
@@ -26,15 +47,44 @@
 </template>
 
 <style scoped>
+  .info {
+    position: absolute;
+    background: darkgray;
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    z-index: 0;
+    bottom: 1rem;
+    left: 50%;
+    translate: -50% 0;
+    white-space: nowrap;
+  }
+
+  table, tr, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  tr:nth-child(1) {
+    background-color: white;
+  }
+
+  tr:nth-child(2),
+  tr:nth-child(3) {
+    background-color: lightgray;
+  }
+
+  td {
+    font-size: .85rem;
+    padding: .25rem .5rem;
+  }
+
   .local-root {
     position: relative;
     overflow: hidden;
 
-    background: url(https://static.vecteezy.com/system/resources/previews/048/382/628/non_2x/gold-mine-tunnel-trolley-with-gold-nuggets-in-old-mining-cave-interior-cartoon-background-illustration-vector.jpg);
-
-    background-repeat: no-repeat;
+    background: url('@shared/assets/img/cave.gif') no-repeat center center;
     background-size: cover;
-    
+
     cursor: grab;
   }
 

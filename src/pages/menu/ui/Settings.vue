@@ -12,10 +12,10 @@
             <label for="difficulty">Сложность: </label>
 
             <select id="difficulty" v-model="chosenDifficulty">
-              <option value="easy">Easy</option>
-              <option value="normal">Normal</option>
-              <option value="hard">Hard</option>
-              <option value="impossible">Impossible</option>
+              <option value="easy">Легко</option>
+              <option value="normal">Нормально</option>
+              <option value="hard">Сложно</option>
+              <option value="impossible">Пипяу</option>
             </select>
           </div>
 
@@ -23,8 +23,8 @@
             <label for="diamond_icon">Иконка алмаза: </label>
             
             <select id="diamond_icon" v-model="chosenDiamondIcon">
-              <option value="default">Default</option>
-              <option value="secret">Secret</option>
+              <option value="default">Обычная</option>
+              <option value="secret">Секретная</option>
             </select>
           </div>
         </div>

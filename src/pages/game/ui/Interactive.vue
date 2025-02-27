@@ -1,5 +1,6 @@
 <script setup>
   import { ExitIcon } from '@shared/icons'
+  import { Button } from "@shared/ui"
   import { isWarnVisible } from '@entities/gameStates'
   import { bindListeners, displayWarn } from '../model/keysHandler'
   
@@ -8,20 +9,28 @@
 
 <template>
   <div class="screen">
-    <button @pointerdown="displayWarn">
-      <ExitIcon />
-    </button>
+    <Transition name="fading">
+      <button
+          v-if="!isWarnVisible"
+          @pointerdown="displayWarn"
+          class="exit-btn">
+        <ExitIcon />
+      </button>
+    </Transition>
 
     <Transition name="fading">
-      <div class="screen blackout" v-if="isWarnVisible">
+      <div class="screen blackout warn" v-if="isWarnVisible">
         <div class="question">
-          <h1>Вы уверены, что хотите выйти? Прогресс не сохранится</h1>
-          
-          <RouterLink to="/">
-            <button>ДА</button>
-          </RouterLink>
+          <span>Вы уверены, что хотите выйти?</span>
+          <span>Прогресс не сохранится</span>
 
-          <button @pointerdown="displayWarn">CLOSE</button>
+          <div class="warn__btns">
+            <RouterLink to="/" class="warn__btn">
+              <Button>ДА</Button>
+            </RouterLink>
+
+            <Button @pointerdown="displayWarn" class="warn__btn">ЗАКРЫТЬ</Button>
+          </div>
         </div>
       </div>
     </Transition>
@@ -30,20 +39,58 @@
 
 <style scoped>
   button {
-    position: inherit;
-    top: 0;
-    left: 0;
-    
     border: none;
     background: transparent;
+  }
+
+  .exit-btn {
+    z-index: 1;
+    position: absolute;
+    top: .5rem;
+    left: .5rem;
+
     border-radius: 100%;
   }
 
-  svg {
-    transition: var(--fast-transition);
+  .warn {
+    z-index: 2;
   }
 
-  button:active > svg {
-    scale: 1.15;
+  .question {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    margin: 2rem auto;
+
+    max-width: 80%;
+
+    background: darkgray;
+    border-radius: 1rem;
+  }
+
+  .question span {
+    font-size: 1.25rem;
+    display: block;
+
+    padding: .25rem 1rem;
+  }
+
+  .question span:first-of-type {
+    margin-top: 1rem;
+  }
+
+  .question span:last-of-type {
+    margin-bottom: .5rem;
+  }
+
+  .warn__btns {
+    margin: 0 auto;
+    padding-bottom: 1rem;
+    display: flex;
+  }
+
+  .warn__btns > *:first-child {
+    margin-right: 1rem;
   }
 </style>

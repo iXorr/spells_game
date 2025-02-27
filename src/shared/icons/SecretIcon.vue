@@ -1,5 +1,5 @@
 <template>
-  <img src="../assets/img/penis.png" alt="penis" draggable="false">
+  <img src="../assets/img/secret-icon.webp" alt="penis" draggable="false">
 </template>
 
 <style scoped>

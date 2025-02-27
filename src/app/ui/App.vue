@@ -10,8 +10,7 @@
 
 <style scoped>
   main {
-    background: url('@shared/assets/img/menu-bg.jpg');
-    background-repeat: no-repeat;
+    background: url('@shared/assets/img/cave.gif') no-repeat center center;
     background-size: cover;
   }
 </style>

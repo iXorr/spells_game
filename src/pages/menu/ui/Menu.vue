@@ -43,12 +43,6 @@
 </template>
 
 <style scoped>
-  .title {
-    top: 2.5rem;
-    left: 50%;
-    translate: -50% 0;
-  }
-
   .greeting {
     display: flex;
     flex-direction: column;
